@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en <CounterApp /> Debe de hacer match con el snapshot 1`] = `
+<div>
+  <h1>
+     CounterApp
+  </h1>
+  <h2>
+     
+    10
+     
+  </h2>
+  <button>
+    +1
+  </button>
+  <button>
+    -1
+  </button>
+  <button>
+    Reset
+  </button>
+</div>
+`;
+
+exports[`Pruebas en <CounterApp /> Debe de mostrar el valor inicial de 100 <CounperApp value = {100}> 1`] = `
+<div>
+  <h1>
+     CounterApp
+  </h1>
+  <h2>
+     
+    10
+     
+  </h2>
+  <button>
+    +1
+  </button>
+  <button>
+    -1
+  </button>
+  <button>
+    Reset
+  </button>
+</div>
+`;
+
+exports[`Pruebas en <CounterApp /> Debe de mostrar el valor inicial de 100 match con el snapshot 1`] = `
+<div>
+  <h1>
+     CounterApp
+  </h1>
+  <h2>
+     
+    10
+     
+  </h2>
+  <button>
+    +1
+  </button>
+  <button>
+    -1
+  </button>
+  <button>
+    Reset
+  </button>
+</div>
+`;
