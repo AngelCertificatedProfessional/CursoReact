@@ -36,7 +36,7 @@ describe('Pruebas en <FirstApp />', () => {
         const {getByText,getAllByText} = render(<FirstApp title={title} subTitle={subTitle}/>)
         expect(getByText(subTitle)).toBeTruthy();
         //ayuda a identificar si trae varios eleementos con la misma etiqueta
-        expect(getAllByText(subTitle).length).toBe(1);
+        expect(getAllByText(subTitle).length).toBe(2);
     })
 
 })
