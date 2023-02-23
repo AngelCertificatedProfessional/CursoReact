@@ -25,7 +25,7 @@ export const CounterApp = ({value}) =>{
             <button onClick={handleSubtrack}>
                 -1
             </button>
-            <button onClick={handleReset}>
+            <button onClick={handleReset} aria-label="btn-reset">
                 Reset
             </button>
         </>
