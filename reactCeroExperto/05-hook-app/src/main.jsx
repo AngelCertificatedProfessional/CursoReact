@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { CallBackHook } from './06-memos/CallBackHook'
+import './08-useReducer/intro-reducer'
 // import { MemoHook } from './06-memos/MemoHock'
 // import { FormWithCustomHook } from './02-useEffect/FormWithCustomHook'
 // import { MultipleCustomHooks } from './03-examples/MultipleCustomHooks'
@@ -13,8 +14,8 @@ import { CallBackHook } from './06-memos/CallBackHook'
 // import { HooksApp } from './HooksApp'
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <CallBackHook />
-  </React.StrictMode>,
-)
+// ReactDOM.createRoot(document.getElementById('root')).render(
+//   <React.StrictMode>
+//     <CallBackHook />
+//   </React.StrictMode>,
+// )
