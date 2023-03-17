@@ -25,5 +25,3 @@ const addTodoAction = {
 }
 
 todos = todoReducer(initialState,addTodoAction)
-
-console.log(todos)
