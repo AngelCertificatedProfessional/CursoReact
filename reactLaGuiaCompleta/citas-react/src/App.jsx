@@ -1,11 +1,11 @@
-function App() {
-  return (
-    <div className="App">
-      <h1>Hola Mundo</h1>
+import { Header } from "./components/Header"
+import { Formulario } from "./components/Formulario"
+const App = () => {
 
-      <img src="algunaimagen.jpg"/>
-    </div>
+  return (
+    <>
+      <Header />
+      <Formulario/>
+    </>
   )
 }
-
-export default App
