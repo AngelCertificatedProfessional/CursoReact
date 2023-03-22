@@ -15,9 +15,9 @@ export const Quote = ({name}) => {
                 <p ref={pRef} className="mb-1">
                     {name}
                 </p>
-                <footer className="blockquote-footer">
+                {/* <footer className="blockquote-footer">
                     {name}
-                </footer>
+                </footer> */}
             </blockquote>
         </>
   )
