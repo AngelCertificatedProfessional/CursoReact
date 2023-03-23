@@ -9,8 +9,6 @@ export const MultipleCustomHooks = () => {
   //si el valor no es nullo o vacio tomara el valor
   const {name} = !!data && data;
 
-  console.log('respuesta',data,isLoading,hasError)
-
   return (
     <>
       <h1>BreakingBad Quotes</h1>
