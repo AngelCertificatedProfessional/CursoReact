@@ -1,4 +1,9 @@
+import {useState,useEffect} from 'react'
+
 export const Formulario = () => {
+
+  const [nombre,setNombre] = useState('');
+  
   return (
     <div className="md:w-1/2 lg:w-2/5">
       <h2 className="font-black text-3xl text-center">Seguimiento Pacientes </h2>
@@ -21,7 +26,7 @@ export const Formulario = () => {
         </div>
         <div className="mb-5">
           <label htmlFor="email" className="block text-gray-700 uppercase font-bold">
-            Nombre Propietario
+            Email
           </label>
           <input id="email" type="email" placeholder="Email Contacto Propiertario" className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"/>
         </div>
