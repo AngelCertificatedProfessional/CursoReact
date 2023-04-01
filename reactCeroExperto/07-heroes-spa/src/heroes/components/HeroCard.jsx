@@ -6,12 +6,12 @@ const CharactersByHero = ({alter_ego,characters}) => {
     return (alter_ego === characters) ? <></> : (<p>{characters}</p>)
 }
 
-export const HeroCard = ({id,superhero,publisher,alter_ego,first_appearance,characters,}) => {
+export const HeroCard = ({id,superhero,publisher,alter_ego,first_appearance,characters}) => {
     const heroImageUrl = `/assets/heroes/${id}.jpg`;
-
+    console.log('test111')
     // const charactersByHero = (<p>{characters}</p>)
     return (
-    <div className="col">
+    <div className="col animate__animated animate__fadeIn">
         <div className="card">
             <div className="row go-gutters">
                 <div className="col-4">
