@@ -13,7 +13,7 @@ export const App = () => {
       />
       <div className="mt-12 md:flex">
         <Formulario pacientes={pacientes} setPacientes={setPacientes}/>
-        <ListadoPacientes/>
+        <ListadoPacientes pacientes = {pacientes} />
       </div>
     </div>
   )
