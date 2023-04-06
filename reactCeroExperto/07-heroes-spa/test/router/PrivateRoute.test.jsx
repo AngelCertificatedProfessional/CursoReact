@@ -1,6 +1,6 @@
 import { render,screen } from "@testing-library/react"
-import { AuthContext } from "../../../src/auth"
-import { PrivateRoute } from "../../../src/router/PrivateRoute"
+import { AuthContext } from "../../src/auth"
+import { PrivateRoute } from "../../src/router/PrivateRoute"
 import { MemoryRouter,Routes,Route } from "react-router-dom"
 
 describe('Pruebas en el <PrivateRoute>', () => {
