@@ -22,7 +22,7 @@ export const LoginPage = () => {
   return (
     <div className="container mt-5">
       <h1> 
-        LoginPage
+        Login Page
       </h1>
     <hr/>
     <button className="btn btn-primary" onClick={onLogin}>
