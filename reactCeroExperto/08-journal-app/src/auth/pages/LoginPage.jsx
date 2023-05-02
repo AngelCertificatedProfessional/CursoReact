@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {Link as RouterLink} from 'react-router-dom'
 import { Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { Google } from "@mui/icons-material"
@@ -9,7 +9,7 @@ import { checkingAuthentication, startGoogleSignIn } from '../../store/auth'
 export const LoginPage = () => {
 
   const dispatch = useDispatch()
-
+  const {status} = useSelector(state => state.auth)
   const {email,password,onInputChange} = useForm({
     email:'test@gmail.com',
     password:'123456'
@@ -23,7 +23,6 @@ export const LoginPage = () => {
   }
 
   const onGoogleSignIn = () => {
-    console.log('onGoogleSignIn')
     dispatch(startGoogleSignIn())
   }
 
