@@ -7,11 +7,11 @@ import { ListadoGastos } from './components/ListadoGastos'
 
 function App() {
 
+  const [gastos,setGastos] = useState([])
   const [presupuesto,setPresupuesto] = useState(0)
   const [isValidPresupuesto,setIsValidPresupuesto] = useState(false)
   const [modal, setModal] = useState(false)
   const [animarModal, setAnimarModal] = useState(false)
-  const [gastos,setGastos] = useState([])
 
   const handleNuevoGasto = () => {
     setModal(true)
@@ -32,8 +32,9 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className={modal ? 'fijar' : ''}>
         <Header
+          gastos={gastos}
           presupuesto = {presupuesto}
           setPresupuesto = {setPresupuesto}
           isValidPresupuesto = {isValidPresupuesto}
