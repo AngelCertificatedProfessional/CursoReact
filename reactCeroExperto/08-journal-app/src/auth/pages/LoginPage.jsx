@@ -7,10 +7,20 @@ import { AuthLayout } from '../layout/AuthLayout'
 import { useForm } from '../../hooks'
 import { checkingAuthentication, startGoogleSignIn } from '../../store/auth'
 
+const formData = {
+  email:'angel@google.com',
+  password:'123456',
+  displayName:'Angel Espinoza'
+}
+
 export const LoginPage = () => {
 
   const dispatch = useDispatch()
   const {status} = useSelector(state => state.auth)
+
+  const {displayName,email,password,onInputChange,isFormValid,
+    displayNameValid,emailValid,passwordValid,formState
+} = useForm(formData)
 
   const isAuthenticating = useMemo(() => status === 'checking',[status])
 
