@@ -1,6 +1,6 @@
 //normalmente hechos para las tareas asincronas en los redux
 
-import { singInWithGoogle } from "../../firebase/providers"
+import { registerUserWithEmailPassword, singInWithGoogle } from "../../firebase/providers"
 import { checkingCredentials,login,logout } from "./"
 
 export const checkingAuthentication = (email,password) => {
@@ -17,3 +17,11 @@ export const startGoogleSignIn = () => {
         dispatch(login(result))
     }
 }
+
+export const startCreatingUserWithEmailPassword = ({name,password,displayName}) => {
+    return async(dispatch) => {
+        dispatch(checkingCredentials())
+        const resp = await registerUserWithEmailPassword({name,password,displayName})
+        console.log(resp)
+    }
+} 
