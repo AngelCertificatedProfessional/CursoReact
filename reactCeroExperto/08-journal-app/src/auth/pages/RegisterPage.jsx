@@ -32,7 +32,8 @@ export const RegisterPage = () => {
     event.preventDefault();
     setformaSubmitted(true)
     if(!isFormValid) return;
-    dispatch(startCreatingUserWithEmailPassword(formState))
+    dispatch(startCreatingUserWithEmailPassword(formState));
+    
   }
 
   return (
