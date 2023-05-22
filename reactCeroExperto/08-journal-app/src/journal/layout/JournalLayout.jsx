@@ -5,7 +5,7 @@ const drawerWidth = 240;
 
 export const JournalLayout = ({children}) => {
   return (
-    <Box sx={{display:'flex'}}>
+    <Box sx={{display:'flex'}} className="animate__animated animate__fadeIn animate__faster">
         <Navbar drawerWidth = {drawerWidth}/>
         
         <SideBar drawerWidth = {drawerWidth}/>
@@ -15,6 +15,7 @@ export const JournalLayout = ({children}) => {
             p:3 //PADING GLOBAL
         }}
         >
+          {/* da un salto de linea para el el hijo */}
             <Toolbar/>
             {children}
         </Box>

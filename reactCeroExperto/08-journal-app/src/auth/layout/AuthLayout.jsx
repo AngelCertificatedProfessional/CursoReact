@@ -2,7 +2,8 @@ import { Grid, Typography } from "@mui/material"
 
 export const AuthLayout = ({children,title = ''}) => {
   return (
-    <Grid container
+    <Grid 
+      container
       spacing={0} //Evita espacio entre los hijos
       direction = "column" //realiza un tipo de flexbox de columna
       alignItems = "center" //estructura del flex
