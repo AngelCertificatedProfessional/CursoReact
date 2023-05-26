@@ -13,6 +13,12 @@ const formData = {
   displayName:'Angel Espinoza'
 }
 
+// const formData = {
+//   email:'',
+//   password:'',
+//   displayName:''
+// }
+
 export const LoginPage = () => {
 
   const dispatch = useDispatch()
