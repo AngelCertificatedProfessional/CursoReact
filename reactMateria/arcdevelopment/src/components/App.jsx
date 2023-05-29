@@ -1,9 +1,11 @@
 import { Header } from "./ui/Header"
+import { ThemeProvider } from '@mui/material/styles'
+import {theme} from './ui/Theme'
 export const App = () =>  {
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
       <Header/>
-      hello!
-    </div>
+      Hola!
+    </ThemeProvider>
   )
 }
