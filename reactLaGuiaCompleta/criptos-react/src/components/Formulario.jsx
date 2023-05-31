@@ -26,7 +26,7 @@ export const Formulario = ({setMonedas}) => {
   const [criptos,setCriptos] = useState([])
   const [error,setError] = useState(false)
   const [moneda,SelectMonedas] = useSelectMonedas('Elige tu Moneda',monedas);
-  const [criptoMoneda,SelectCriptoMoneda] = useSelectMonedas('Elige tu CryptoMoneda',criptos);
+  const [criptomoneda,SelectCriptoMoneda] = useSelectMonedas('Elige tu CryptoMoneda',criptos);
 
   useEffect(() => {
     const consultarAPI = async () => {
@@ -46,14 +46,14 @@ export const Formulario = ({setMonedas}) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if([moneda,criptoMoneda].includes('')){
+    if([moneda,criptomoneda].includes('')){
       setError(true)
       return 
     }
     setError(false)
     setMonedas({
       moneda,
-      criptoMoneda
+      criptomoneda
     })
   }
 
