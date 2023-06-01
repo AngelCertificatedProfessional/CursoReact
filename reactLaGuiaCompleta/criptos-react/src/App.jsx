@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import ImagenCripto from './img/imagen-criptos.png'
 import { Formulario } from './components/Formulario'
 import { useEffect, useState } from 'react'
+import { Resultado } from './components/Resultado'
 
 const Contenedor = styled.div`
   max-width:900px;
@@ -44,7 +45,7 @@ const Heading = styled.h1`
 function App() {
 
   const [monedas, setMonedas] = useState({})
-  const [resultdo, setResultado] = useState({})
+  const [resultado, setResultado] = useState({})
 
   useEffect(() => {
     if(Object.keys(monedas).length > 0){
@@ -72,7 +73,9 @@ function App() {
         <Formulario
           setMonedas = {setMonedas}
         />
-
+        {
+          resultado.PRICE && <Resultado resultado={resultado}/>
+        }
       </div>
     </Contenedor>
   )
