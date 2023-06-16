@@ -1,8 +1,9 @@
-import {Menu,MenuItem,AppBar,Toolbar,useScrollTrigger,Box,Tab, Tabs,Button} from '@mui/material'
+import {Menu,MenuItem,AppBar,Toolbar,useScrollTrigger,Box,Tab, Tabs,Button, useMediaQuery, SwipeableDrawer, IconButton, ListItem, ListItemText, List, ListItemButton} from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu';
 import { cloneElement, useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import logo from '../../assets/logo.svg'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 
 const ElevationScroll = (props) => {
   const { children } = props;
@@ -16,25 +17,45 @@ const ElevationScroll = (props) => {
   });
 }
 
-const routes = ['/', '/services', '/revolution','/about', '/contact'];
-const menuRutas = ['/services', '/customsoftware', '/mobileapps','/websites'];
+const menuOptions = [
+  {name:"Services",link:"/services",activeIndex:1,selectedIndex:0},
+  {name:"Custom Software Developer",link:"/customsoftware",activeIndex:1,selectedIndex:1},
+  {name:"Mobile App Development",link:"/mobileapps",activeIndex:1,selectedIndex:2},
+  {name:"Websites Development",link:"/websites",activeIndex:1,selectedIndex:3},
+]
 
 export const Header = () => {
   // esta linea nos ayuda a entrar a los 
   const theme = useTheme();
-
+  // Variables que nos ayudara a detectar si la pantalla esta en md o menor
+  const iOS =
+  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const matches = useMediaQuery(theme.breakpoints.down("lg"))
+  const [openDrawer,setOpenDrawer] = useState(false)
+  const [openMenu,setOpenMenu] = useState(false)
   const [value,setValue] = useState(0)
   const [anchorEl,setAnchorEl] = useState(null)
-  const [open,setOpen] = useState(false)
   const [selectedIndex,setSelectedIndex] = useState(0);
 
-  const handleChange = (e, value) => {
-    setValue(value)
+  const routes = [
+    {name:"Home",link:'/',activeIndex:0}, 
+    {name:"Services",link:'/services',
+      activeIndex:1,
+      ariaOwns: anchorEl ? "simple-menu" : undefined,
+      ariaPopup: anchorEl ? true : undefined,
+      mouseOver: event => handleClick(event)
+    },
+    {name:"The Revolution",link:"/revolution",activeIndex:2},
+    {name:"About Us",link:"/about",activeIndex:3},
+    {name:"Contact Us",link:"/contact",activeIndex:4}];
+
+  const handleChange = (e, newValue) => {
+    setValue(newValue)
   }
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
-    setOpen(true)
+    setOpenMenu(true)
   }
 
   const handleMenuItemClick = (e,index) => {
@@ -44,24 +65,28 @@ export const Header = () => {
 
   const handleClose = () => {
     setAnchorEl(null)
-    setOpen(false)
+    setOpenMenu(false)
   }
 
-  const menuOptions = [
-    {name:"Services",link:"/services"},
-    {name:"Custom Software Developer",link:"/customsoftware"},
-    {name:"Mobile App Development",link:"/mobileapps"},
-    {name:"Websites Development",link:"/websites"},
-  ]
 
 
   const useStyles = {
     logo:{
-      height:"7rem"
+      height:"7rem",
+      //achica la imagen
+      [theme.breakpoints.down("lg")]:{
+        height:"6rem"
+      },
+      [theme.breakpoints.down('sm')]:{
+        height:"5.5rem"
+      }
     },
     toolbarMargin:{
       ...theme.mixins.toolbar,
-      marginBottom:"3rem"
+      marginBottom:"3rem",
+      [theme.breakpoints.down("lg")]:{
+        marginBottom:"2rem"
+      },
     },
     tabContainer:{
       ml:"auto"
@@ -85,6 +110,7 @@ export const Header = () => {
       }
     },
     menu:{
+      zIndex:theme.zIndex.modal + 2,
       "& .MuiPaper-root": {
         backgroundColor: theme.palette.common.blue,
         color:"white",
@@ -107,25 +133,162 @@ export const Header = () => {
       //   opacity:1
       // }
     },
+    drawerIconContainer: {
+      marginLeft:"auto",
+      "&:hover":{
+        backgroundColor:"transparent"
+      }
+    },
+    drawerIcon:{
+      height:"50px",
+      width:"50px"
+    },
+    drawer:{
+      "& .MuiPaper-root": {
+        backgroundColor: theme.palette.common.blue,
+        color:"white",
+        borderRadius:"0px"
+      }
+    },
+    drawerItem:{
+      ...theme.typography.tab,
+    },
+    drawerItemEstimate:{
+      backgroundColor:theme.palette.common.orange
+    },
+    drawerItemButton:{
+      "&.Mui-selected": {
+        backgroundColor: theme.palette.common.blueSelected
+      },
+      "&.Mui-selected:hover":{ 
+        backgroundColor: theme.palette.common.blueSelected
+      },
+      "&:hover": {
+        backgroundColor: theme.palette.common.blueSelected
+      }
+    },
+    appbar:{
+      zIndex:theme.zIndex.modal + 1
+    }
   }
 
   useEffect(() => {
     //Cuando cargas la pagina y estas en otra ruta ,te carga el login pero en la ruta se queda con otra
     //para evitar que no te muestre la correcta agregamos el sigueitne codigo
-    if(menuRutas.includes(window.location.pathname)){
-      setValue(1)  
-      setSelectedIndex(menuRutas.includes(window.location.pathname) ? menuRutas.indexOf(window.location.pathname) : 0)
-      return;
-    } 
-    setValue(routes.includes(window.location.pathname) ? routes.indexOf(window.location.pathname) : 0)  
-  },[value,selectedIndex ])
+    [...menuOptions,...routes].forEach(route => {
+      switch(window.location.pathname){
+        case `${route.link}`:
+          if(value !== route.activeIndex){
+            setValue(route.activeIndex)
+            if(route.selectedIndex && route.selectedIndex !== selectedIndex){
+              setSelectedIndex(route.selectedIndex)
+            }
+          }
+        break;
+        default:
+          break;
+      }
+    })
+  },[value,menuOptions,selectedIndex,routes ])
+
+  const tabs = (
+    <>
+      <Tabs 
+        value={value}
+        sx={useStyles.tabContainer}
+        textColor="secondary"
+        indicatorColor="primary"
+        onChange={handleChange}
+      >
+        {
+          routes.map((route,index) => (
+            // las propiedades que no tengan tanto ariaowns como las otras las tomara como undefined y no les 
+            //asignara valor
+            <Tab key={index} sx={useStyles.tab} component={Link} to={route.link} label={route.name} 
+              aria-owns={route.ariaOwns} aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver}/>
+          ))
+        }
+      </Tabs>
+      {/* Contained indica que se cra un botton con background */}
+      <Button variant="contained" color="secondary" sx={useStyles.button}>
+        Free Estimate
+      </Button>
+      <Menu 
+        id="simple-menu" 
+        anchorEl={anchorEl} 
+        open={openMenu} 
+        onClose={handleClose}
+        sx={useStyles.menu}
+        MenuListProps={{onMouseLeave:handleClose}}
+        disableAutoFocusItem
+        elevation={0}
+        >
+       
+        {
+          menuOptions.map((option,i) => (
+            <MenuItem 
+              key={i}
+              component={Link} 
+              to={option.link} 
+              sx={useStyles.menuItem} 
+              onClick={(event) => {
+                handleMenuItemClick(event,i); 
+                setValue(1)
+              }} 
+              selected = {i === selectedIndex && value === 1}
+              >
+              {option.name}
+            </MenuItem>
+          ))
+        }
+      </Menu>
+    </>
+  )
+
+  const drawer = (
+    <>
+      <SwipeableDrawer 
+      disableBackdropTransition={!iOS} 
+      disableDiscovery={iOS} 
+      open={openDrawer} 
+      onClose = {() => setOpenDrawer(false)} 
+      onOpen={() => setOpenDrawer(true)}
+      sx={useStyles.drawer}
+      >
+        <Toolbar sx={useStyles.toolbarMargin}/>
+        <List disablePadding >
+          {/* ListItem si quieres uno con forma de boton el itembutton es mejor*/}
+          {
+            routes.map((route,index) => (
+              <ListItemButton key={index} sx={useStyles.drawerItemButton} onClick={() => {setOpenDrawer(false); setValue(route.activeIndex);}} 
+              divider component={Link} to={route.link} selected={value === route.activeIndex}>
+              {/* disableTypography elimina los estilos por default */}
+              <ListItemText sx={useStyles.drawerItem}  disableTypography>
+                {route.name}
+              </ListItemText>
+            </ListItemButton>
+            ))
+          }
+          <ListItemButton sx={useStyles.drawerItemEstimate} onClick={() => {setOpenDrawer(false); setValue(5);}} 
+            divider component={Link} to="/estimate">
+            <ListItemText sx={useStyles.drawerItem} disableTypography>
+              Free Estimate
+            </ListItemText>
+          </ListItemButton>
+        </List>
+      </SwipeableDrawer>
+      <IconButton sx={useStyles.drawerIconContainer} onClick={() => setOpenDrawer(!openDrawer)} disableRipple>
+        <MenuIcon sx={useStyles.drawerIcon}/>
+      </IconButton>
+    </>
+  )
 
   return (
     <>
       {/* Nos ayuda a tener un navbar fijo paraque no baje */}
       <ElevationScroll>
         {/* // fixed es la posicion predefinida y toma el full size de la pantalla static tomaria un margin */}
-        <AppBar position="fixed" color="primary">
+        <AppBar position="fixed" color="primary" sx={useStyles.appbar}>
             {/* Toolbar es necesaripo porque a partir de este punto todo lo que se ponga
             se pondra en horizontal */}
             {/* disableGuttersv elimina un margen left que esta por default */}
@@ -149,91 +312,9 @@ export const Header = () => {
                 />
               </Button>
               {/* se cambia el img por el box <img alt= "company logo" sx={{height:"7em"}} src={logo}/> */}
-              <Tabs 
-                value={value}
-                sx={useStyles.tabContainer}
-                textColor="secondary"
-                indicatorColor="primary"
-                onChange={handleChange}
-              >
-                <Tab sx={useStyles.tab} component={Link} to="/" label="Home" />
-                <Tab 
-                  sx={useStyles.tab} 
-                  aria-owns={anchorEl ? "simple-menu" : undefined} 
-                  aria-haspopup={anchorEl ? "true" : undefined} 
-                  component={Link} 
-                  onMouseOver={(event) => handleClick(event)}
-                  to="/services" 
-                  label="Services" />
-
-                <Tab sx={useStyles.tab} component={Link} to="/revolution" label="The Revolution" />
-                <Tab sx={useStyles.tab} component={Link} to="/about" label="About Us" />
-                <Tab sx={useStyles.tab} component={Link} to="/contact" label="Contact Us" />
-              </Tabs>
-              {/* Contained indica que se cra un botton con background */}
-              <Button variant="contained" color="secondary" sx={useStyles.button}>
-                Free Estimate
-              </Button>
-              <Menu 
-                id="simple-menu" 
-                anchorEl={anchorEl} 
-                open={open} 
-                onClose={handleClose}
-                sx={useStyles.menu}
-                MenuListProps={{onMouseLeave:handleClose}}
-                disableAutoFocusItem
-                elevation={0}
-                >
-                {/* <MenuItem 
-                  onClick={() => {handleClose(); setValue(1)}} 
-                  component={Link} 
-                  to="/services" 
-                  sx={useStyles.menuItem}
-                  >
-                  Services
-                </MenuItem>
-                <MenuItem 
-                  onClick={() => {handleClose(); setValue(1)}} 
-                  component={Link} 
-                  to="/customsoftware"
-                  sx={useStyles.menuItem}
-                  >
-                  Custom Software Developtment
-                </MenuItem>
-                <MenuItem 
-                  onClick={() => {handleClose(); setValue(1)}} 
-                  component={Link} 
-                  to="/mobileapps"
-                  sx={useStyles.menuItem}
-                  >
-                  Mobile App Development
-                </MenuItem>
-                <MenuItem 
-                  onClick={() => {handleClose(); setValue(1)}} 
-                  component={Link} 
-                  to="/websites"
-                  sx={useStyles.menuItem}
-                  >
-                  Website Developtment
-                </MenuItem> */}
-                {
-                  menuOptions.map((option,i) => (
-                    <MenuItem 
-                      key={i}
-                      component={Link} 
-                      to={option.link} 
-                      sx={useStyles.menuItem} 
-                      onClick={(event) => {
-                        handleMenuItemClick(event,i); 
-                        setValue(1)
-                      }} 
-                      selected = {i === selectedIndex && value === 1}
-                      >
-                      {option.name}
-                    </MenuItem>
-                  ))
-                }
-              </Menu>
+              {
+                matches ? drawer : tabs
+              }
             </Toolbar>
         </AppBar>
       </ElevationScroll>

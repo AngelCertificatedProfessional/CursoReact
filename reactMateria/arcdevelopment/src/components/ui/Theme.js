@@ -5,6 +5,22 @@ const arcWhite = "#000000"
 const arcBlueSelected = "#0D66A3"
 
 export const theme = createTheme({
+    breakpoints:{
+        keys:[
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+        ],
+        values:{
+            xs:0,
+            sm:600,
+            md:960,
+            lg:1280,
+            xl:1920
+        }
+    },
     palette: {
         common: {
             blue:arcBlue,
@@ -34,5 +50,5 @@ export const theme = createTheme({
             textTransform:"none",
             color:"white"
         }
-    }
+    },
 });
