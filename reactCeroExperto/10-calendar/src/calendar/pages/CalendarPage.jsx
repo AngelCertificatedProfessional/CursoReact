@@ -34,15 +34,15 @@ export const CalendarPage = () => {
   const onDoubleClick = (event) =>{
     console.log({doubleClick:event})
   }
+  const onViewChanged = (event) =>{
+    localStorage.setItem('lastView',event)
+    setLastView(event)
+  }
 
   const onSelect = (event) =>{
     console.log({click:event})
   }
 
-  const onViewChanged = (event) =>{
-    localStorage.setItem('lastView',event)
-    setLastView(event)
-  }
 
 
   return (
