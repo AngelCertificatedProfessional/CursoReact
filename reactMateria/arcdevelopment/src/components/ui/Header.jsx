@@ -25,8 +25,9 @@ const menuOptions = [
 ]
 
 export const Header = () => {
-  // esta linea nos ayuda a entrar a los 
+  //esta linea nos ayudara a obtener los estilos dethene
   const theme = useTheme();
+  // esta linea nos ayuda a entrar a los 
   // Variables que nos ayudara a detectar si la pantalla esta en md o menor
   const iOS =
   typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
