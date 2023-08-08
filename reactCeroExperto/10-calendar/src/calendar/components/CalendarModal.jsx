@@ -1,8 +1,10 @@
-import { addHours } from 'date-fns';
+import { addHours, differenceInSeconds } from 'date-fns';
 import { useState } from 'react';
-import DatePicker from 'react-datepicker'
 import Modal from 'react-modal';
+import DatePicker,{ registerLocale, setDefaultLocale } from 'react-datepicker'
+import es from 'date-fns/locale/es';
 import "react-datepicker/dist/react-datepicker.css";
+registerLocale('es', es)
 
 const customStyles = {
     content: {
@@ -48,6 +50,23 @@ export const CalendarModal = () => {
         setIsOpen(false)
     }
 
+    const onSubmit = (event) => {
+        event.preventDefault();
+
+        const difference = differenceInSeconds(formValues.end,formValues.start)
+        console.log({difference})
+        if(isNaN(difference) || difference <= 0){
+            console.log('Error en las fechas')
+            return;
+        }
+
+        if(formValues.title.length <= 0 ) return;
+        console.log(formValues);
+        //TODO:
+        //cerrar el modal
+
+    }
+
     return (
         <Modal
             isOpen = {isOpen}
@@ -59,7 +78,7 @@ export const CalendarModal = () => {
         >
             <h1> Nuevo evento </h1>
             <hr />
-            <form className="container">
+            <form className="container" onSubmit={onSubmit}>
 
                 <div className="form-group mb-2">
                     <label>Fecha y hora inicio</label>
@@ -68,6 +87,9 @@ export const CalendarModal = () => {
                         className='form-control'
                         onChange = {(event) => onDateChanged(event,'start')}
                         dateFormat="Pp"
+                        showTimeSelect //sirve para poner la fecha actual
+                        locale="es"
+                        timeCaption="Hora"
                     />
                 </div>
 
@@ -79,6 +101,9 @@ export const CalendarModal = () => {
                         className='form-control'
                         onChange = {(event) => onDateChanged(event,'end')}
                         dateFormat="Pp"
+                        showTimeSelect
+                        locale="es"
+                        timeCaption="Hora"
                     />
                 </div>
 
