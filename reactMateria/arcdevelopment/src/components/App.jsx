@@ -3,12 +3,16 @@ import { ThemeProvider } from '@mui/material/styles'
 import {theme} from './ui/Theme'
 import { Header } from "./ui/Header"
 import {Footer} from "../components/ui/Footer"
+import { useState } from "react"
 
 export const App = () =>  {
+  const [selectedIndex,setSelectedIndex] = useState(0);
+  const [value,setValue] = useState(0)
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header/>
+        <Header value = {value} setValue={setValue} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
         <Routes>
           {/* <Route path= "/" element={<JournalPage/>} /> */}
           
@@ -22,7 +26,7 @@ export const App = () =>  {
           <Route path= "/contact" Component={() => <div>Contact</div>} />
           <Route path= "/estimate" Component={() => <div>Estimate</div>} />
         </Routes>
-        <Footer/>
+        <Footer value = {value} setValue={setValue} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
       </BrowserRouter>
     </ThemeProvider>
   )

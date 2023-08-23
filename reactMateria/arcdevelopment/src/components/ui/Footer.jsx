@@ -1,10 +1,9 @@
 import {Box,Grid} from '@mui/material'
+import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import footerAdornment from '../../assets/Footer Adornment.svg'
-import { ClassNames } from '@emotion/react';
 
-
-export const Footer = () => {
+export const Footer = (props) => {
     //esta linea nos ayudara a obtener los estilos dethene
     const theme = useTheme();
     const useStyles = {
@@ -32,7 +31,11 @@ export const Footer = () => {
             color:"white",
             fontFamily:"Arial",
             fontSize:"0.75rem",
-            fontWeight:"bold"
+            fontWeight:"bold",
+            textDecoration:"none"
+        },
+        gridItem:{
+            margin:"3rem"
         }
     }
 
@@ -42,61 +45,61 @@ export const Footer = () => {
             sx={useStyles.footer}
             >
             <Grid container justifyContent="center" sx={useStyles.mainContainer}>
-                <Grid item>
-                    <Grid container direction="column">
-                        <Grid item sx={useStyles.link}>
+                <Grid item sx={useStyles.gridItem}>
+                    <Grid container direction="column" spacing={2}>
+                        <Grid item component={Link} onClick={() => props.setValue(0)} to="/" sx={useStyles.link}>
                             Home
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item>
-                    <Grid container direction="column">
-                        <Grid item sx={useStyles.link}>
+                <Grid item sx={useStyles.gridItem}>
+                    <Grid container direction="column" spacing={2}>
+                        <Grid item component={Link} onClick={() => {props.setValue(1); props.setSelectedIndex(0)}} to="/services" sx={useStyles.link}>
                             Services
                         </Grid>
-                        <Grid item sx={useStyles.link}>
+                        <Grid item component={Link} onClick={() => {props.setValue(1); props.setSelectedIndex(1)}} to="/customsoftware" sx={useStyles.link}>
                             Custom Software Development
                         </Grid>
-                        <Grid item sx={useStyles.link}>
+                        <Grid item component={Link} onClick={() => {props.setValue(1); props.setSelectedIndex(2)}} to="/mobileapps" sx={useStyles.link}>
                             Mobile App Development
                         </Grid>
-                        <Grid item sx={useStyles.link}>
+                        <Grid item component={Link} onClick={() => {props.setValue(1); props.setSelectedIndex(3)}} to="/websites" sx={useStyles.link}>
                             Website Development
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item>
-                    <Grid container direction="column">
-                        <Grid item sx={useStyles.link}>
+                <Grid item sx={useStyles.gridItem}>
+                    <Grid container direction="column" spacing={2}>
+                        <Grid item component={Link} to="/revolution" sx={useStyles.link} onClick={() => props.setValue(2)}>
                             The Revolution
                         </Grid>
-                        <Grid item sx={useStyles.link}>
+                        <Grid item component={Link} to="/revolution" sx={useStyles.link} onClick={() => props.setValue(2)}>
                             Vision
                         </Grid>
-                        <Grid item sx={useStyles.link}>
+                        <Grid item component={Link} to="/revolution" sx={useStyles.link} onClick={() => props.setValue(2)}>
                             Technology
                         </Grid>
-                        <Grid item sx={useStyles.link}>
+                        <Grid item component={Link} to="/revolution" sx={useStyles.link} onClick={() => props.setValue(2)}>
                             Process
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item>
-                    <Grid container direction="column">
-                        <Grid item sx={useStyles.link}>
+                <Grid item sx={useStyles.gridItem}>
+                    <Grid container direction="column" spacing={2}>
+                        <Grid item component={Link} to="/about" sx={useStyles.link} onClick={() => props.setValue(3)}>
                             About us
                         </Grid>
-                        <Grid item sx={useStyles.link}>
+                        <Grid item component={Link} to="/about" sx={useStyles.link} onClick={() => props.setValue(3)}>
                             History
                         </Grid>
-                        <Grid item sx={useStyles.link}>
+                        <Grid item component={Link} to="/about" sx={useStyles.link} onClick={() => props.setValue(3)}>
                             Team
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item>
-                    <Grid container direction="column">
-                        <Grid item sx={useStyles.link}>
+                <Grid item sx={useStyles.gridItem}>
+                    <Grid container direction="column" spacing={2}>
+                        <Grid item component={Link} to="/contact" sx={useStyles.link} onClick={() => props.setValue(4)}>
                             Contact Us
                         </Grid>
                     </Grid>

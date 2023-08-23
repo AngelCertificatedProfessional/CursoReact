@@ -24,7 +24,7 @@ const menuOptions = [
   {name:"Websites Development",link:"/websites",activeIndex:1,selectedIndex:3},
 ]
 
-export const Header = () => {
+export const Header = (props) => {
   //esta linea nos ayudara a obtener los estilos dethene
   const theme = useTheme();
   // esta linea nos ayuda a entrar a los 
@@ -34,9 +34,7 @@ export const Header = () => {
   const matches = useMediaQuery(theme.breakpoints.down("lg"))
   const [openDrawer,setOpenDrawer] = useState(false)
   const [openMenu,setOpenMenu] = useState(false)
-  const [value,setValue] = useState(0)
   const [anchorEl,setAnchorEl] = useState(null)
-  const [selectedIndex,setSelectedIndex] = useState(0);
 
   const routes = [
     {name:"Home",link:'/',activeIndex:0}, 
@@ -51,7 +49,7 @@ export const Header = () => {
     {name:"Contact Us",link:"/contact",activeIndex:4}];
 
   const handleChange = (e, newValue) => {
-    setValue(newValue)
+    props.setValue(newValue)
   }
 
   const handleClick = (e) => {
@@ -61,7 +59,7 @@ export const Header = () => {
 
   const handleMenuItemClick = (e,index) => {
     handleClose()
-    setSelectedIndex(index)
+    props.setSelectedIndex(index)
   } 
 
   const handleClose = () => {
@@ -179,10 +177,10 @@ export const Header = () => {
     [...menuOptions,...routes].forEach(route => {
       switch(window.location.pathname){
         case `${route.link}`:
-          if(value !== route.activeIndex){
-            setValue(route.activeIndex)
-            if(route.selectedIndex && route.selectedIndex !== selectedIndex){
-              setSelectedIndex(route.selectedIndex)
+          if(props.value !== route.activeIndex){
+            props.setValue(route.activeIndex)
+            if(route.selectedIndex && route.selectedIndex !== props.selectedIndex){
+              props.setSelectedIndex(route.selectedIndex)
             }
           }
         break;
@@ -190,12 +188,12 @@ export const Header = () => {
           break;
       }
     })
-  },[value,menuOptions,selectedIndex,routes ])
+  },[props.value,menuOptions,props.selectedIndex,routes,props ])
 
   const tabs = (
     <>
       <Tabs 
-        value={value}
+        value={props.value}
         sx={useStyles.tabContainer}
         textColor="secondary"
         indicatorColor="primary"
@@ -234,9 +232,9 @@ export const Header = () => {
               sx={useStyles.menuItem} 
               onClick={(event) => {
                 handleMenuItemClick(event,i); 
-                setValue(1)
+                props.setValue(1)
               }} 
-              selected = {i === selectedIndex && value === 1}
+              selected = {i === props.selectedIndex && props.value === 1}
               >
               {option.name}
             </MenuItem>
@@ -261,8 +259,8 @@ export const Header = () => {
           {/* ListItem si quieres uno con forma de boton el itembutton es mejor*/}
           {
             routes.map((route,index) => (
-              <ListItemButton key={index} sx={useStyles.drawerItemButton} onClick={() => {setOpenDrawer(false); setValue(route.activeIndex);}} 
-              divider component={Link} to={route.link} selected={value === route.activeIndex}>
+              <ListItemButton key={index} sx={useStyles.drawerItemButton} onClick={() => {setOpenDrawer(false); props.setValue(route.activeIndex);}} 
+              divider component={Link} to={route.link} selected={props.value === route.activeIndex}>
               {/* disableTypography elimina los estilos por default */}
               <ListItemText sx={useStyles.drawerItem}  disableTypography>
                 {route.name}
@@ -270,7 +268,7 @@ export const Header = () => {
             </ListItemButton>
             ))
           }
-          <ListItemButton sx={useStyles.drawerItemEstimate} onClick={() => {setOpenDrawer(false); setValue(5);}} 
+          <ListItemButton sx={useStyles.drawerItemEstimate} onClick={() => {setOpenDrawer(false); props.setValue(5);}} 
             divider component={Link} to="/estimate">
             <ListItemText sx={useStyles.drawerItem} disableTypography>
               Free Estimate
@@ -304,7 +302,7 @@ export const Header = () => {
                 to="/" 
                 sx={useStyles.logoContainer} 
                 disableRipple
-                onClick={() => setValue(0)}>
+                onClick={() => props.setValue(0)}>
                 <Box
                   component="img"
                   sx={useStyles.logo}
