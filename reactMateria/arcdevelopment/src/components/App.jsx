@@ -3,6 +3,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import {theme} from './ui/Theme'
 import { Header } from "./ui/Header"
 import {Footer} from "../components/ui/Footer"
+import { LandingPage } from "./LandingPage"
 import { useState } from "react"
 
 export const App = () =>  {
@@ -16,7 +17,7 @@ export const App = () =>  {
         <Routes>
           {/* <Route path= "/" element={<JournalPage/>} /> */}
           
-          <Route path= "/" Component={() => <div style={{height:"2000px"}}>Home</div>} />
+          <Route path= "/" Component={LandingPage} />
           <Route path= "/services" Component={() => <div>Services</div>} />
           <Route path= "/customsoftware" Component={() => <div>Custom Software</div>} />
           <Route path= "/mobileapps" Component={() => <div>Mobile Apps</div>} />
