@@ -100,7 +100,10 @@ export const Header = (props) => {
       marginLeft:"50px",
       marginRight:"25px",
       height:"45px",
-      ...theme.typography.estimate
+      ...theme.typography.estimate,
+      "&:hover":{
+        backgroundColor: theme.palette.secondary.light
+      }
     },
     logoContainer:{
       padding:0,
