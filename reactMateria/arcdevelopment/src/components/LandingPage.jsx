@@ -6,6 +6,7 @@ import img_4 from '../animations/landinganimation/img_4.png'
 import {Box,Grid,Button, Typography,useMediaQuery} from '@mui/material'
 import ButtonArrow from './ui/ButtonArrow';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg'
+import mobileAppIcon from '../assets/mobileIcon.svg'
 
 export const LandingPage = () => {
   
@@ -140,7 +141,7 @@ export const LandingPage = () => {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item> {/* Services block*/}
+            <Grid item> {/* Custom Software block*/}
                 <Grid container direction = "row" justifyContent={matchesSM ? "center" : undefined} sx={useStyles.serviceContainer}>
                     <Grid item style={{marginLeft: matchesSM ? 0 : "5rem", textAlign: matchesSM ? "center" : undefined }}>
                         <Typography variant="h4">
@@ -176,6 +177,45 @@ export const LandingPage = () => {
                     </Grid>
                 </Grid>
             </Grid>
+
+            <Grid item> {/* iOS/Android block*/}
+                <Grid container direction = "row" justifyContent={matchesSM ? "center" : "flex-end"} sx={useStyles.serviceContainer}>
+                    <Grid item style={{textAlign: matchesSM ? "center" : undefined }}>
+                        
+                        <Typography variant="h4">
+                           iOS/Android App Development
+                        </Typography>
+                        <Typography variant="subtitle1" sx={useStyles.subtitle}>
+                            Extend Functionality. Extend Access Increase Engagement.
+                        </Typography>
+                        <Typography variant="subtitle1">
+                            Integrate your web experience or create a standalon app {matchesSM ? null : <br/>} with either mobile platform
+                            <Box
+                                component="span"
+                                sx={useStyles.specialText}
+                            >
+                                celebration
+                            </Box>
+                        </Typography>
+                        <Button variant="outlined" sx={useStyles.learnButton}>
+                            <span style={{marginRight:10}}>
+                                Learn More
+                            </span>
+                            <ButtonArrow width={10} height={10} fill={theme.palette.common.blue}/>
+                        </Button>
+                    </Grid>
+                    <Grid item style={{marginRight: matchesSM ? 0 : "5rem" }}>
+                        <Box
+                            sx={useStyles.icon}
+                            component="img"
+                            // sx={useStyles.icon}
+                            alt="mobile app icon" 
+                            src={mobileAppIcon}
+                        />
+                    </Grid>
+                </Grid>
+            </Grid>
+
         </Grid>
     )
 }

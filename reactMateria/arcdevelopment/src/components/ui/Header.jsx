@@ -20,7 +20,7 @@ const ElevationScroll = (props) => {
 const menuOptions = [
   {name:"Services",link:"/services",activeIndex:1,selectedIndex:0},
   {name:"Custom Software Developer",link:"/customsoftware",activeIndex:1,selectedIndex:1},
-  {name:"Mobile App Development",link:"/mobileapps",activeIndex:1,selectedIndex:2},
+  {name:"iOS/Android App Development",link:"/mobileapps",activeIndex:1,selectedIndex:2},
   {name:"Websites Development",link:"/websites",activeIndex:1,selectedIndex:3},
 ]
 

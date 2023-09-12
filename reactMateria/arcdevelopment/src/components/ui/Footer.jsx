@@ -82,7 +82,7 @@ export const Footer = (props) => {
                                 Custom Software Development
                             </Grid>
                             <Grid item component={Link} onClick={() => {props.setValue(1); props.setSelectedIndex(2)}} to="/mobileapps" sx={useStyles.link}>
-                                Mobile App Development
+                                iOS/Android App Development
                             </Grid>
                             <Grid item component={Link} onClick={() => {props.setValue(1); props.setSelectedIndex(3)}} to="/websites" sx={useStyles.link}>
                                 Website Development
