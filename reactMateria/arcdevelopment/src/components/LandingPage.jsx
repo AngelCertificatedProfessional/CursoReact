@@ -7,6 +7,7 @@ import {Box,Grid,Button, Typography,useMediaQuery} from '@mui/material'
 import ButtonArrow from './ui/ButtonArrow';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg'
 import mobileAppIcon from '../assets/mobileIcon.svg'
+import websiteIcon from '../assets/websiteIcon.svg'
 
 export const LandingPage = () => {
   
@@ -215,7 +216,42 @@ export const LandingPage = () => {
                     </Grid>
                 </Grid>
             </Grid>
-
+            <Grid item> {/* WEBSIE Software block*/}
+                <Grid container direction = "row" justifyContent={matchesSM ? "center" : undefined} sx={useStyles.serviceContainer}>
+                    <Grid item style={{marginLeft: matchesSM ? 0 : "5rem", textAlign: matchesSM ? "center" : undefined }}>
+                        <Typography variant="h4">
+                            Website Development
+                        </Typography>
+                        <Typography variant="subtitle1" sx={useStyles.subtitle}>
+                            Reach More. Discover More. Sell More.
+                        </Typography>
+                        <Typography variant="subtitle1">
+                            Optimized for Search Engines, built for Speed {" "}
+                            <Box
+                                component="span"
+                                sx={useStyles.specialText}
+                            >
+                                celebration
+                            </Box>
+                        </Typography>
+                        <Button variant="outlined" sx={useStyles.learnButton}>
+                            <span style={{marginRight:10}}>
+                                Learn More
+                            </span>
+                            <ButtonArrow width={10} height={10} fill={theme.palette.common.blue}/>
+                        </Button>
+                    </Grid>
+                    <Grid item>
+                        <Box
+                            sx={useStyles.icon}
+                            component="img"
+                            // sx={useStyles.icon}
+                            alt="Website icon" 
+                            src={websiteIcon}
+                        />
+                    </Grid>
+                </Grid>
+            </Grid>
         </Grid>
     )
 }
