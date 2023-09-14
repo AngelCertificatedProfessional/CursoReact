@@ -3,11 +3,12 @@ import img_1 from '../animations/landinganimation/img_1.png'
 import img_2 from '../animations/landinganimation/img_2.png'
 import img_3 from '../animations/landinganimation/img_3.png'
 import img_4 from '../animations/landinganimation/img_4.png'
-import {Box,Grid,Button, Typography,useMediaQuery} from '@mui/material'
+import {Box,Grid,Button, Typography,useMediaQuery,Card,CardContent} from '@mui/material'
 import ButtonArrow from './ui/ButtonArrow';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg'
 import mobileAppIcon from '../assets/mobileIcon.svg'
 import websiteIcon from '../assets/websiteIcon.svg'
+import revolutionBackground from '../assets/repeatingBackground.svg'
 
 export const LandingPage = () => {
   
@@ -86,6 +87,20 @@ export const LandingPage = () => {
             [theme.breakpoints.down("sm")]:{
                 padding:25
             }
+        },
+        revolutionBackground:{
+            backgroundImage:`url(${revolutionBackground})`,
+            backgroundPosition:"center",
+            backgroundSize:"cover",
+            bacgroundRepeat:"no-repeat",
+            height:"100%",
+            width:"100%"
+        },
+        revolutionCard:{
+            position:"absolute",
+            boxShadow:theme.shadows[10],
+            borderRadius:5,
+            padding:"10rem"
         }
     }
     return (
@@ -250,6 +265,36 @@ export const LandingPage = () => {
                             src={websiteIcon}
                         />
                     </Grid>
+                </Grid>
+            </Grid>
+            <Grid item>
+                <Grid container style={{height:"100rem"}} alignItems="center" justifyContent="center">
+                    <Card sx={useStyles.revolutionCard}>
+                        <CardContent>
+                            <Grid container direction="column" style={{textAlign:"center"}}>
+                                <Grid item>
+                                    <Typography variant="h3">
+                                        The Revolution
+                                    </Typography>
+                                </Grid>
+                                <Grid item >
+                                    <Typography variant="subtitle1">
+                                        Visionary insights couped with cutting-edge technology is a recipe for revolution
+                                    </Typography>
+                                    <Button variant="outlined" sx={useStyles.learnButton}>
+                                        <span style={{marginRight:10}}>
+                                            Learn More
+                                        </span>
+                                        <ButtonArrow width={10} height={10} fill={theme.palette.common.blue}/>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </CardContent>
+                    </Card>
+                    <Box
+                        component="div"
+                        sx={useStyles.revolutionBackground}
+                    />
                 </Grid>
             </Grid>
         </Grid>
