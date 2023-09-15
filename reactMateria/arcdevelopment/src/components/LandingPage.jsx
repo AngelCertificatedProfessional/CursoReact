@@ -100,7 +100,15 @@ export const LandingPage = () => {
             position:"absolute",
             boxShadow:theme.shadows[10],
             borderRadius:5,
-            padding:"10rem"
+            padding:"10rem",
+            [theme.breakpoints.down("sm")]:{
+                paddingTop:"8rem",
+                paddingBottom:"8rem",
+                paddingLeft:0,
+                paddingRight:0,
+                borderRadius:0,
+                width:"100%"
+            }
         }
     }
     return (
@@ -268,12 +276,13 @@ export const LandingPage = () => {
                 </Grid>
             </Grid>
             <Grid item>
-                <Grid container style={{height:"100rem"}} alignItems="center" justifyContent="center">
+                <Grid container style={{height:"100rem",marginTop:"12rem"}} alignItems="center" justifyContent="center">
                     <Card sx={useStyles.revolutionCard}>
                         <CardContent>
                             <Grid container direction="column" style={{textAlign:"center"}}>
                                 <Grid item>
-                                    <Typography variant="h3">
+                                    {/* gutterBottom es un margin bottom */}
+                                    <Typography variant="h3" gutterBottom> 
                                         The Revolution
                                     </Typography>
                                 </Grid>
