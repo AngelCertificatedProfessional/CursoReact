@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 const arcBlue = "#0B72B9"
 const arcOrange = "#FFBA60"
-const arcWhite = "#000000"
+const arcWhite = "#FFFFFF"
 const arcBlueSelected = "#0D66A3"
 const arcGrey = "#868686"
 
@@ -73,6 +73,11 @@ export const theme = createTheme({
             fontSize:"1.25rem",
             fontWeight:300,
             color: arcGrey
+        },
+        subtitle2:{
+            color:"white",
+            fontSize:"1.25rem",
+            fontWeight:300
         },
         learnButton:{
             borderColor: arcBlue,

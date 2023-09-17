@@ -9,6 +9,7 @@ import customSoftwareIcon from '../assets/Custom Software Icon.svg'
 import mobileAppIcon from '../assets/mobileIcon.svg'
 import websiteIcon from '../assets/websiteIcon.svg'
 import revolutionBackground from '../assets/repeatingBackground.svg'
+import infoBackground from '../assets/infoBackground.svg'
 
 export const LandingPage = () => {
   
@@ -109,6 +110,14 @@ export const LandingPage = () => {
                 borderRadius:0,
                 width:"100%"
             }
+        },
+        infoBackground:{
+            backgroundImage:`url(${infoBackground})`,
+            backgroundPosition:"center",
+            backgroundSize:"cover",
+            bacgroundRepeat:"no-repeat",
+            height:"100%",
+            width:"100%"
         }
     }
     return (
@@ -276,6 +285,7 @@ export const LandingPage = () => {
                 </Grid>
             </Grid>
             <Grid item>
+                {/* The Revolution Block */}
                 <Grid container style={{height:"100rem",marginTop:"12rem"}} alignItems="center" justifyContent="center">
                     <Card sx={useStyles.revolutionCard}>
                         <CardContent>
@@ -303,6 +313,33 @@ export const LandingPage = () => {
                     <Box
                         component="div"
                         sx={useStyles.revolutionBackground}
+                    />
+                </Grid>
+            </Grid>
+            <Grid item>
+                {/* Informaciont block */}
+                <Grid container style={{height:"80rem"}} alignItems="center" direction="row">
+                    <Grid item style={{position:"absolute",marginLeft:"5rem"}}>
+                        <Grid container direction="column">
+                            <Typography variant="h2" style={{color:"white"}}>
+                                About Us
+                            </Typography>
+                            <Typography variant="subtitle2">
+                                Let's get personal
+                            </Typography>
+                            <Grid item>
+                                <Button variant="outlined" style={{color:"white",borderColor:"white"}} sx={useStyles.learnButton}>
+                                    <span style={{marginRight:10}}>
+                                        Learn More
+                                    </span>
+                                    <ButtonArrow width={10} height={10} fill={theme.palette.common.white}/>
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Box
+                        component="div"
+                        sx={useStyles.infoBackground}
                     />
                 </Grid>
             </Grid>
