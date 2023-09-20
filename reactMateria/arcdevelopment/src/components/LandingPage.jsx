@@ -15,6 +15,7 @@ export const LandingPage = () => {
   
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"))
+    const matchesXS = useMediaQuery(theme.breakpoints.down("xs"))
     const useStyles = {
         animation: {
             naxWidth:"50rem",
@@ -319,21 +320,41 @@ export const LandingPage = () => {
             <Grid item>
                 {/* Informaciont block */}
                 <Grid container style={{height:"80rem"}} alignItems="center" direction="row">
-                    <Grid item style={{position:"absolute",marginLeft:"5rem"}}>
-                        <Grid container direction="column">
-                            <Typography variant="h2" style={{color:"white"}}>
-                                About Us
-                            </Typography>
-                            <Typography variant="subtitle2">
-                                Let's get personal
-                            </Typography>
-                            <Grid item>
-                                <Button variant="outlined" style={{color:"white",borderColor:"white"}} sx={useStyles.learnButton}>
-                                    <span style={{marginRight:10}}>
-                                        Learn More
-                                    </span>
-                                    <ButtonArrow width={10} height={10} fill={theme.palette.common.white}/>
-                                </Button>
+                    <Grid item container style={{position:"absolute",textAlign:matchesSM ? "center" : "inherit"}} direction={matchesSM? "column" : "row"} spacing={matchesSM ? 10 : 0}>
+                        <Grid item sm style={{marginLeft: matchesSM ? 0 : "5rem"}}>
+                            <Grid container direction="column">
+                                <Typography variant="h2" style={{color:"white"}}>
+                                    About Us
+                                </Typography>
+                                <Typography variant="subtitle2">
+                                    Let's get personal
+                                </Typography>
+                                <Grid item>
+                                    <Button variant="outlined" style={{color:"white",borderColor:"white"}} sx={useStyles.learnButton}>
+                                        <span style={{marginRight:10}}>
+                                            Learn More
+                                        </span>
+                                        <ButtonArrow width={10} height={10} fill={theme.palette.common.white}/>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item sm style={{marginRight: matchesSM ? 0 : "5rem", textAlign: matchesSM ? "center" : "right"}}>
+                            <Grid container direction="column">
+                                <Typography variant="h2" style={{color:"white"}}>
+                                    Contact Us
+                                </Typography>
+                                <Typography variant="subtitle2">
+                                    Say Hello! 
+                                </Typography>
+                                <Grid item>
+                                    <Button variant="outlined" style={{color:"white",borderColor:"white"}} sx={useStyles.learnButton}>
+                                        <span style={{marginRight:10}}>
+                                            Learn More
+                                        </span>
+                                        <ButtonArrow width={10} height={10} fill={theme.palette.common.white}/>
+                                    </Button>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
