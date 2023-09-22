@@ -10,6 +10,7 @@ import mobileAppIcon from '../assets/mobileIcon.svg'
 import websiteIcon from '../assets/websiteIcon.svg'
 import revolutionBackground from '../assets/repeatingBackground.svg'
 import infoBackground from '../assets/infoBackground.svg'
+import { CallToAction } from './ui/CallToAction';
 
 export const LandingPage = () => {
   
@@ -363,6 +364,10 @@ export const LandingPage = () => {
                         sx={useStyles.infoBackground}
                     />
                 </Grid>
+            </Grid>
+            <Grid item>
+                {/* Call to action block */}
+                <CallToAction/>
             </Grid>
         </Grid>
     )
