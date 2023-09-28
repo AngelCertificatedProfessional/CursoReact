@@ -3,6 +3,7 @@ import img_1 from '../animations/landinganimation/img_1.png'
 import img_2 from '../animations/landinganimation/img_2.png'
 import img_3 from '../animations/landinganimation/img_3.png'
 import img_4 from '../animations/landinganimation/img_4.png'
+import { Link } from 'react-router-dom'; 
 import {Box,Grid,Button, Typography,useMediaQuery,Card,CardContent} from '@mui/material'
 import ButtonArrow from './ui/ButtonArrow';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg'
@@ -134,12 +135,12 @@ export const LandingPage = () => {
                         </Typography>
                         <Grid container justifyContent="center" sx={useStyles.buttonContainer}>
                             <Grid item>
-                                <Button sx={useStyles.estimateButton} variant="contained">
+                                <Button component={Link} to="/estimate" sx={useStyles.estimateButton} variant="contained">
                                     Free Estimate
                                 </Button>
                             </Grid>
                             <Grid item>
-                                <Button variant="outlined" sx={useStyles.learnButtonHero}>
+                                <Button component={Link} to="/revolution"  variant="outlined" sx={useStyles.learnButtonHero}>
                                     <span style={{marginRight:10}}>
                                         Learn More
                                     </span>
@@ -194,7 +195,7 @@ export const LandingPage = () => {
                                 celebration
                             </Box>
                         </Typography>
-                        <Button variant="outlined" sx={useStyles.learnButton}>
+                        <Button component={Link} to="/customsoftware" variant="outlined" sx={useStyles.learnButton}>
                             <span style={{marginRight:10}}>
                                 Learn More
                             </span>
@@ -232,7 +233,7 @@ export const LandingPage = () => {
                                 celebration
                             </Box>
                         </Typography>
-                        <Button variant="outlined" sx={useStyles.learnButton}>
+                        <Button component={Link} to="/mobileapps" variant="outlined" sx={useStyles.learnButton}>
                             <span style={{marginRight:10}}>
                                 Learn More
                             </span>
@@ -268,7 +269,7 @@ export const LandingPage = () => {
                                 celebration
                             </Box>
                         </Typography>
-                        <Button variant="outlined" sx={useStyles.learnButton}>
+                        <Button component={Link} to="/websites" variant="outlined" sx={useStyles.learnButton}>
                             <span style={{marginRight:10}}>
                                 Learn More
                             </span>
@@ -302,7 +303,7 @@ export const LandingPage = () => {
                                     <Typography variant="subtitle1">
                                         Visionary insights couped with cutting-edge technology is a recipe for revolution
                                     </Typography>
-                                    <Button variant="outlined" sx={useStyles.learnButton}>
+                                    <Button component={Link} to="/revolution" variant="outlined" sx={useStyles.learnButton}>
                                         <span style={{marginRight:10}}>
                                             Learn More
                                         </span>
@@ -331,7 +332,7 @@ export const LandingPage = () => {
                                     Let's get personal
                                 </Typography>
                                 <Grid item>
-                                    <Button variant="outlined" style={{color:"white",borderColor:"white"}} sx={useStyles.learnButton}>
+                                    <Button component={Link} to="/about" variant="outlined" style={{color:"white",borderColor:"white"}} sx={useStyles.learnButton}>
                                         <span style={{marginRight:10}}>
                                             Learn More
                                         </span>
@@ -349,7 +350,7 @@ export const LandingPage = () => {
                                     Say Hello! 
                                 </Typography>
                                 <Grid item>
-                                    <Button variant="outlined" style={{color:"white",borderColor:"white"}} sx={useStyles.learnButton}>
+                                    <Button component={Link} to="/contact" variant="outlined" style={{color:"white",borderColor:"white"}} sx={useStyles.learnButton}>
                                         <span style={{marginRight:10}}>
                                             Learn More
                                         </span>

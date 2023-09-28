@@ -3,6 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import ButtonArrow from './ButtonArrow';
 import background from '../../assets/background.jpg'
 import mobileBackground from '../../assets/mobileBackground.jpg'
+import { Link } from 'react-router-dom'; 
 
 export const CallToAction = () => {
     const theme = useTheme();
@@ -57,7 +58,7 @@ export const CallToAction = () => {
                             Take advantage of the 21st Century
                         </Typography>
                         <Grid container justifyContent={matchesSM ? "center" : undefined} item>
-                            <Button variant="outlined" sx={useStyles.learnButton}>
+                            <Button component={Link} to="/revolution" variant="outlined" sx={useStyles.learnButton}>
                                 <span style={{marginRight:10}}>
                                     Learn More
                                 </span>
@@ -68,7 +69,7 @@ export const CallToAction = () => {
                 </Grid>
             </Grid>
             <Grid item >
-                <Button variant="contained" sx={useStyles.estimateButton}>
+                <Button component={Link} to="/estimate" variant="contained" sx={useStyles.estimateButton}>
                     Free estimate
                 </Button>
             </Grid>

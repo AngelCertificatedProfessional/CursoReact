@@ -17,7 +17,7 @@ export const App = () =>  {
         <Routes>
           {/* <Route path= "/" element={<JournalPage/>} /> */}
           
-          <Route path= "/" Component={LandingPage} />
+          <Route path= "/" element={<LandingPage setValue={setValue} setSelectedIndex={setSelectedIndex} />} />
           <Route path= "/services" Component={() => <div>Services</div>} />
           <Route path= "/customsoftware" Component={() => <div>Custom Software</div>} />
           <Route path= "/mobileapps" Component={() => <div>Mobile Apps</div>} />
@@ -27,7 +27,7 @@ export const App = () =>  {
           <Route path= "/contact" Component={() => <div>Contact</div>} />
           <Route path= "/estimate" Component={() => <div>Estimate</div>} />
         </Routes>
-        <Footer value = {value} setValue={setValue} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
+        <Footer setValue={setValue} setSelectedIndex={setSelectedIndex}/>
       </BrowserRouter>
     </ThemeProvider>
   )

@@ -187,6 +187,9 @@ export const Header = (props) => {
             }
           }
         break;
+        case '/estimate':
+          props.setValue(5);
+          break;
         default:
           break;
       }
@@ -212,7 +215,7 @@ export const Header = (props) => {
         }
       </Tabs>
       {/* Contained indica que se cra un botton con background */}
-      <Button variant="contained" color="secondary" sx={useStyles.button}>
+      <Button component={Link} to="/estimate" variant="contained" color="secondary" sx={useStyles.button} onClick={() => props.setValue(5)}>
         Free Estimate
       </Button>
       <Menu 
