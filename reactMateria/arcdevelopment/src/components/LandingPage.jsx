@@ -13,7 +13,7 @@ import revolutionBackground from '../assets/repeatingBackground.svg'
 import infoBackground from '../assets/infoBackground.svg'
 import { CallToAction } from './ui/CallToAction';
 
-export const LandingPage = () => {
+export const LandingPage = (props) => {
   
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"))
@@ -135,12 +135,12 @@ export const LandingPage = () => {
                         </Typography>
                         <Grid container justifyContent="center" sx={useStyles.buttonContainer}>
                             <Grid item>
-                                <Button component={Link} to="/estimate" sx={useStyles.estimateButton} variant="contained">
+                                <Button component={Link} to="/estimate" sx={useStyles.estimateButton} variant="contained" onClick={() => props.setValue(5)}>
                                     Free Estimate
                                 </Button>
                             </Grid>
                             <Grid item>
-                                <Button component={Link} to="/revolution"  variant="outlined" sx={useStyles.learnButtonHero}>
+                                <Button component={Link} to="/revolution"  variant="outlined" sx={useStyles.learnButtonHero} onClick={() => props.setValue(2)}>
                                     <span style={{marginRight:10}}>
                                         Learn More
                                     </span>
@@ -177,7 +177,8 @@ export const LandingPage = () => {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item> {/* Custom Software block*/}
+            <Grid item> 
+                {/* Custom Software block*/}
                 <Grid container direction = "row" justifyContent={matchesSM ? "center" : undefined} sx={useStyles.serviceContainer}>
                     <Grid item style={{marginLeft: matchesSM ? 0 : "5rem", textAlign: matchesSM ? "center" : undefined }}>
                         <Typography variant="h4">
@@ -195,7 +196,7 @@ export const LandingPage = () => {
                                 celebration
                             </Box>
                         </Typography>
-                        <Button component={Link} to="/customsoftware" variant="outlined" sx={useStyles.learnButton}>
+                        <Button component={Link} to="/customsoftware" variant="outlined" sx={useStyles.learnButton} onClick={() => {props.setValue(1); props.setSelectedIndex(1)}}>
                             <span style={{marginRight:10}}>
                                 Learn More
                             </span>
@@ -233,7 +234,7 @@ export const LandingPage = () => {
                                 celebration
                             </Box>
                         </Typography>
-                        <Button component={Link} to="/mobileapps" variant="outlined" sx={useStyles.learnButton}>
+                        <Button component={Link} to="/mobileapps" variant="outlined" sx={useStyles.learnButton} onClick={() => {props.setValue(1); props.setSelectedIndex(2)}}>
                             <span style={{marginRight:10}}>
                                 Learn More
                             </span>
@@ -269,7 +270,7 @@ export const LandingPage = () => {
                                 celebration
                             </Box>
                         </Typography>
-                        <Button component={Link} to="/websites" variant="outlined" sx={useStyles.learnButton}>
+                        <Button component={Link} to="/websites" variant="outlined" sx={useStyles.learnButton} onClick={() => {props.setValue(1); props.setSelectedIndex(3)}}>
                             <span style={{marginRight:10}}>
                                 Learn More
                             </span>
@@ -303,7 +304,7 @@ export const LandingPage = () => {
                                     <Typography variant="subtitle1">
                                         Visionary insights couped with cutting-edge technology is a recipe for revolution
                                     </Typography>
-                                    <Button component={Link} to="/revolution" variant="outlined" sx={useStyles.learnButton}>
+                                    <Button component={Link} to="/revolution" variant="outlined" sx={useStyles.learnButton} onClick={() => {props.setValue(2);}}>
                                         <span style={{marginRight:10}}>
                                             Learn More
                                         </span>
@@ -321,10 +322,10 @@ export const LandingPage = () => {
             </Grid>
             <Grid item>
                 {/* Informaciont block */}
-                <Grid container style={{height:"80rem"}} alignItems="center" direction="row">
-                    <Grid item container style={{position:"absolute",textAlign:matchesSM ? "center" : "inherit"}} direction={matchesSM? "column" : "row"} spacing={matchesSM ? 10 : 0}>
+                <Grid container style={{height:"80rem"}} alignItems="center" direction="row" sx={useStyles.infoBackground}>
+                    <Grid item container style={{textAlign:matchesSM ? "center" : "inherit"}} direction={matchesSM? "column" : "row"}>
                         <Grid item sm style={{marginLeft: matchesSM ? 0 : "5rem"}}>
-                            <Grid container direction="column">
+                            <Grid container direction="column" style={{marginBottom: matchesXS ? "10rem" : 0}}>
                                 <Typography variant="h2" style={{color:"white"}}>
                                     About Us
                                 </Typography>
@@ -332,7 +333,7 @@ export const LandingPage = () => {
                                     Let's get personal
                                 </Typography>
                                 <Grid item>
-                                    <Button component={Link} to="/about" variant="outlined" style={{color:"white",borderColor:"white"}} sx={useStyles.learnButton}>
+                                    <Button component={Link} to="/about" variant="outlined" style={{color:"white",borderColor:"white"}} sx={useStyles.learnButton} onClick={() => {props.setValue(3);}}>
                                         <span style={{marginRight:10}}>
                                             Learn More
                                         </span>
@@ -350,7 +351,7 @@ export const LandingPage = () => {
                                     Say Hello! 
                                 </Typography>
                                 <Grid item>
-                                    <Button component={Link} to="/contact" variant="outlined" style={{color:"white",borderColor:"white"}} sx={useStyles.learnButton}>
+                                    <Button component={Link} to="/contact" variant="outlined" style={{color:"white",borderColor:"white"}} sx={useStyles.learnButton} onClick={() => {props.setValue(4);}}>
                                         <span style={{marginRight:10}}>
                                             Learn More
                                         </span>
@@ -360,15 +361,11 @@ export const LandingPage = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Box
-                        component="div"
-                        sx={useStyles.infoBackground}
-                    />
                 </Grid>
             </Grid>
             <Grid item>
                 {/* Call to action block */}
-                <CallToAction/>
+                <CallToAction setValue={props.setValue}/>
             </Grid>
         </Grid>
     )

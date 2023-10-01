@@ -5,7 +5,7 @@ import background from '../../assets/background.jpg'
 import mobileBackground from '../../assets/mobileBackground.jpg'
 import { Link } from 'react-router-dom'; 
 
-export const CallToAction = () => {
+export const CallToAction = (props) => {
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"))
     const useStyles = {
@@ -40,6 +40,9 @@ export const CallToAction = () => {
             fontSize:"1.5rem",
             marginRight:"5rem",
             marginLeft:"2rem",
+            "&:hover":{
+                backgroundColor: theme.palette.secondary.light
+            },
             [theme.breakpoints.down("sm")]:{
                 marginRight:0,
                 marginLeft:0,
@@ -58,7 +61,7 @@ export const CallToAction = () => {
                             Take advantage of the 21st Century
                         </Typography>
                         <Grid container justifyContent={matchesSM ? "center" : undefined} item>
-                            <Button component={Link} to="/revolution" variant="outlined" sx={useStyles.learnButton}>
+                            <Button component={Link} to="/revolution" variant="outlined" sx={useStyles.learnButton} onClick={() => {props.setValue(2);}}>
                                 <span style={{marginRight:10}}>
                                     Learn More
                                 </span>
@@ -69,7 +72,7 @@ export const CallToAction = () => {
                 </Grid>
             </Grid>
             <Grid item >
-                <Button component={Link} to="/estimate" variant="contained" sx={useStyles.estimateButton}>
+                <Button component={Link} to="/estimate" variant="contained" sx={useStyles.estimateButton} onClick={() => {props.setValue(5);}}>
                     Free estimate
                 </Button>
             </Grid>
