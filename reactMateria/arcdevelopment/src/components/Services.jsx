@@ -33,7 +33,7 @@ export const Services = (props) => {
             }
         },
         serviceContainer:{
-            marginTop:"12rem",
+            marginTop:"10rem",
             [theme.breakpoints.down("sm")]:{
                 padding:25
             }
@@ -41,9 +41,14 @@ export const Services = (props) => {
     }
     return (
         <Grid container direction="column">
+            <Grid item style={{marginLeft: matchesSM ? 0 : "5rem", marginTop: matchesSM ? "1rem" : "2rem" }}>
+                <Typography variant="h2" align={matchesSM ? "center" : undefined} gutterBottom>
+                    Services
+                </Typography>
+            </Grid>
             <Grid item> {/* iOS/Android block*/}
-                <Grid container direction = "row" justifyContent={matchesSM ? "center" : "flex-end"} sx={useStyles.serviceContainer}>
-                    <Grid item style={{textAlign: matchesSM ? "center" : undefined }}>
+                <Grid container direction = "row" justifyContent={matchesSM ? "center" : "flex-end"} sx={useStyles.serviceContainer} style={{marginTop: matchesSM ? '1rem' : '5rem'}}>
+                    <Grid item style={{textAlign: matchesSM ? "center" : undefined,width: matchesSM ? undefined : "35rem"}}>
                         
                         <Typography variant="h4">
                            iOS/Android App Development
@@ -81,7 +86,7 @@ export const Services = (props) => {
             <Grid item> 
             
                 {/* Custom Software block*/}
-                <Grid container direction = "row" justifyContent={matchesSM ? "center" : undefined} sx={useStyles.serviceContainer}>
+                <Grid container direction = "row" justifyContent={matchesSM ? "center" : undefined} sx={useStyles.serviceContainer} >
                     <Grid item style={{marginLeft: matchesSM ? 0 : "5rem", textAlign: matchesSM ? "center" : undefined }}>
                         <Typography variant="h4">
                             Custom Software Development
@@ -119,8 +124,8 @@ export const Services = (props) => {
 
             
             <Grid item> {/* WEBSIE block*/}
-                <Grid container direction = "row" justifyContent={matchesSM ? "center" : "flex-end"} sx={useStyles.serviceContainer}>
-                    <Grid item style={{ textAlign: matchesSM ? "center" : undefined }}>
+                <Grid container direction = "row" justifyContent={matchesSM ? "center" : "flex-end"} sx={useStyles.serviceContainer} style={{marginBottom:"10rem"}}>
+                    <Grid item style={{ textAlign: matchesSM ? "center" : undefined,width: matchesSM ? undefined : "35rem" }}>
                         <Typography variant="h4">
                             Website Development
                         </Typography>

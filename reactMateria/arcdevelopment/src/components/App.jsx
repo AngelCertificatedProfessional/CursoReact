@@ -6,6 +6,8 @@ import {Footer} from "./ui/Footer"
 import { LandingPage } from "./LandingPage"
 import { useState } from "react"
 import {Services} from "./Services"
+import { CustomSoftware } from "./CustomSoftware"
+
 export const App = () =>  {
   const [selectedIndex,setSelectedIndex] = useState(0);
   const [value,setValue] = useState(0)
@@ -19,7 +21,7 @@ export const App = () =>  {
           
           <Route path= "/" element={<LandingPage setValue={setValue} setSelectedIndex={setSelectedIndex} />} />
           <Route path= "/services" element={<Services setValue={setValue} setSelectedIndex={setSelectedIndex} />} />
-          <Route path= "/customsoftware" Component={() => <div>Custom Software</div>} />
+          <Route path= "/customsoftware" element={<CustomSoftware setValue={setValue} setSelectedIndex={setSelectedIndex} />} />
           <Route path= "/mobileapps" Component={() => <div>Mobile Apps</div>} />
           <Route path= "/websites" Component={() => <div>Websites</div>} />
           <Route path= "/revolution" Component={() => <div>Revolution</div>} />
