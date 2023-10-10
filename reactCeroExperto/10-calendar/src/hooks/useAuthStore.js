@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { calendarApi } from "../api";
 import { clearErrorMessage, onChecking, onLogin, onLogout } from "../store/auth/authSlice";
+import { onLogoutCalendar } from "../store";
 // se puede agregar tambien el el hook de auth
 export const useAuthStore = () => {
     const {status,user,errorMessage} = useSelector(state => state.auth);
@@ -60,6 +61,7 @@ export const useAuthStore = () => {
 
     const startLogout = () => {
         localStorage.clear();
+        dispatch(onLogoutCalendar())
         dispatch(onLogout())
     }
 

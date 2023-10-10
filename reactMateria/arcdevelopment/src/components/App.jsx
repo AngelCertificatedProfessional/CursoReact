@@ -9,6 +9,7 @@ import {Services} from "./Services"
 import { CustomSoftware } from "./CustomSoftware"
 import { MobileApps } from "./MobileApps"
 import { Websites } from "./Websites"
+import { Revolution } from "./Revolution"
 
 export const App = () =>  {
   const [selectedIndex,setSelectedIndex] = useState(0);
@@ -26,7 +27,7 @@ export const App = () =>  {
           <Route path= "/customsoftware" element={<CustomSoftware setValue={setValue} setSelectedIndex={setSelectedIndex} />} />
           <Route path= "/mobileapps" element={<MobileApps setValue={setValue} setSelectedIndex={setSelectedIndex} />} />
           <Route path= "/websites" element={<Websites setValue={setValue} setSelectedIndex={setSelectedIndex} />} />
-          <Route path= "/revolution" Component={() => <div>Revolution</div>} />
+          <Route path= "/revolution" element={<Revolution setValue={setValue} setSelectedIndex={setSelectedIndex} />} />
           <Route path= "/about" Component={() => <div>About</div>} />
           <Route path= "/contact" Component={() => <div>Contact</div>} />
           <Route path= "/estimate" Component={() => <div>Estimate</div>} />
