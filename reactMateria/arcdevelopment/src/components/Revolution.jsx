@@ -2,6 +2,13 @@ import { useTheme } from '@mui/material/styles';
 import {Box,Grid, Typography,useMediaQuery,IconButton} from '@mui/material'
 import vision from '../assets/vision.svg'
 import consultation from '../assets/consultationIcon.svg'
+import mockup from '../assets/mockupIcon.svg'
+import review from '../assets/reviewIcon.svg'
+import design from '../assets/designIcon.svg'
+import build from '../assets/buildIcon.svg'
+import launch from '../assets/launchIcon.svg'
+import maintain from '../assets/maintainIcon.svg'
+import iterate from '../assets/iterateIcon.svg'
 
 export const Revolution = () => {
     const theme = useTheme()
@@ -153,6 +160,250 @@ export const Revolution = () => {
                         component="img"
                         alt="hanshake" 
                         src={consultation}
+                    />
+                </Grid>
+            </Grid>
+
+            <Grid item container direction="row" sx={useStyles.rowContainer} style={{backgroundColor:"#FF7373",height:"90rem"}}>
+                <Grid item container direction="column" lg>
+                    <Grid item>
+                        <Typography variant="h4" gutterBottom style={{color:"#000",marginTop:"5rem"}}>
+                            Mockup
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            In 2013 The rise of computers, and subsequently the internet, has completely altered
+                            every aspect of human life. This has increased our comfort, broadened our connections, and 
+                            reshaped how we view the world.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            What once was confined to huge rooms and teams of engineers now resides in every single one of our hands. 
+                            Harnessing this unlimited potential by using it to solve problems and better lives is at the heart of everything we do.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            We want to help busineses capitalize on the latest and greatest technology. The best way to predict
+                            the future is to be the one building it, and we want to help guide the world int othis next chapter of technological expansion, 
+                            exploration, and innovation.
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid item lg style={{alignSelf:"center"}}>
+                    <Box
+                        component="img"
+                        alt="basic website design outline" 
+                        src={mockup}
+                    />
+                </Grid>
+            </Grid>
+
+            <Grid item container direction="row" sx={useStyles.rowContainer} style={{backgroundColor:"#39B54A",height:"90rem"}}>
+                <Grid item container direction="column" lg>
+                    <Grid item>
+                        <Typography variant="h4" gutterBottom style={{color:"#000",marginTop:"5rem"}}>
+                            Review
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            In 2013 The rise of computers, and subsequently the internet, has completely altered
+                            every aspect of human life. This has increased our comfort, broadened our connections, and 
+                            reshaped how we view the world.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            What once was confined to huge rooms and teams of engineers now resides in every single one of our hands. 
+                            Harnessing this unlimited potential by using it to solve problems and better lives is at the heart of everything we do.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            We want to help busineses capitalize on the latest and greatest technology. The best way to predict
+                            the future is to be the one building it, and we want to help guide the world int othis next chapter of technological expansion, 
+                            exploration, and innovation.
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid item lg style={{alignSelf:"center"}}>
+                    <Box
+                        component="img"
+                        alt="magnifying glass" 
+                        src={review}
+                    />
+                </Grid>
+            </Grid>
+
+            <Grid item container direction="row" sx={useStyles.rowContainer} style={{backgroundColor:"#A67C52",height:"90rem"}}>
+                <Grid item container direction="column" lg>
+                    <Grid item>
+                        <Typography variant="h4" gutterBottom style={{color:"#000",marginTop:"5rem"}}>
+                            Design
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            In 2013 The rise of computers, and subsequently the internet, has completely altered
+                            every aspect of human life. This has increased our comfort, broadened our connections, and 
+                            reshaped how we view the world.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            What once was confined to huge rooms and teams of engineers now resides in every single one of our hands. 
+                            Harnessing this unlimited potential by using it to solve problems and better lives is at the heart of everything we do.
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid item lg style={{alignSelf:"center"}}>
+                    <Box
+                        component="img"
+                        alt="magnifying glass" 
+                        src={design}
+                    />
+                </Grid>
+            </Grid>
+            <Grid item container direction="row" sx={useStyles.rowContainer} style={{backgroundColor:"#39B54A",height:"90rem"}}>
+                <Grid item container direction="column" lg>
+                    <Grid item>
+                        <Typography variant="h4" gutterBottom style={{color:"#000",marginTop:"5rem"}}>
+                            Review
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            In 2013 The rise of computers, and subsequently the internet, has completely altered
+                            every aspect of human life. This has increased our comfort, broadened our connections, and 
+                            reshaped how we view the world.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            What once was confined to huge rooms and teams of engineers now resides in every single one of our hands. 
+                            Harnessing this unlimited potential by using it to solve problems and better lives is at the heart of everything we do.
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid item lg style={{alignSelf:"center"}}>
+                    <Box
+                        component="img"
+                        alt="magnifying glass" 
+                        src={review}
+                    />
+                </Grid>
+            </Grid>
+            <Grid item container direction="row" sx={useStyles.rowContainer} style={{backgroundColor:"#FBB03B",height:"90rem"}}>
+                <Grid item container direction="column" lg>
+                    <Grid item>
+                        <Typography variant="h4" gutterBottom style={{color:"#000",marginTop:"5rem"}}>
+                            Build
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            In 2013 The rise of computers, and subsequently the internet, has completely altered
+                            every aspect of human life. This has increased our comfort, broadened our connections, and 
+                            reshaped how we view the world.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            What once was confined to huge rooms and teams of engineers now resides in every single one of our hands. 
+                            Harnessing this unlimited potential by using it to solve problems and better lives is at the heart of everything we do.
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid item lg style={{alignSelf:"center"}}>
+                    <Box
+                        component="img"
+                        alt="construction side" 
+                        src={build}
+                    />
+                </Grid>
+            </Grid>
+
+            <Grid item container direction="row" sx={useStyles.rowContainer} style={{backgroundColor:"#C1272D",height:"90rem"}}>
+                <Grid item container direction="column" lg>
+                    <Grid item>
+                        <Typography variant="h4" gutterBottom style={{color:"#000",marginTop:"5rem"}}>
+                            Launch
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            In 2013 The rise of computers, and subsequently the internet, has completely altered
+                            every aspect of human life. This has increased our comfort, broadened our connections, and 
+                            reshaped how we view the world.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            What once was confined to huge rooms and teams of engineers now resides in every single one of our hands. 
+                            Harnessing this unlimited potential by using it to solve problems and better lives is at the heart of everything we do.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            What once was confined to huge rooms and teams of engineers now resides in every single one of our hands. 
+                            Harnessing this unlimited potential by using it to solve problems and better lives is at the heart of everything we do.
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid item lg style={{alignSelf:"center"}}>
+                    <Box
+                        component="img"
+                        alt="construction side" 
+                        src={launch}
+                    />
+                </Grid>
+            </Grid>
+
+            <Grid item container direction="row" sx={useStyles.rowContainer} style={{backgroundColor:"#8E45CE",height:"90rem"}}>
+                <Grid item container direction="column" lg>
+                    <Grid item>
+                        <Typography variant="h4" gutterBottom style={{color:"#000",marginTop:"5rem"}}>
+                            Maintain
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            In 2013 The rise of computers, and subsequently the internet, has completely altered
+                            every aspect of human life. This has increased our comfort, broadened our connections, and 
+                            reshaped how we view the world.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            What once was confined to huge rooms and teams of engineers now resides in every single one of our hands. 
+                            Harnessing this unlimited potential by using it to solve problems and better lives is at the heart of everything we do.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            What once was confined to huge rooms and teams of engineers now resides in every single one of our hands. 
+                            Harnessing this unlimited potential by using it to solve problems and better lives is at the heart of everything we do.
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid item lg style={{alignSelf:"center"}}>
+                    <Box
+                        component="img"
+                        alt="construction side" 
+                        src={maintain}
+                    />
+                </Grid>
+            </Grid>
+
+            <Grid item container direction="row" sx={useStyles.rowContainer} style={{backgroundColor:"#29ABE2",height:"90rem"}}>
+                <Grid item container direction="column" lg>
+                    <Grid item>
+                        <Typography variant="h4" gutterBottom style={{color:"#000",marginTop:"5rem"}}>
+                            Iterate
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            In 2013 The rise of computers, and subsequently the internet, has completely altered
+                            every aspect of human life. This has increased our comfort, broadened our connections, and 
+                            reshaped how we view the world.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            What once was confined to huge rooms and teams of engineers now resides in every single one of our hands. 
+                            Harnessing this unlimited potential by using it to solve problems and better lives is at the heart of everything we do.
+                        </Typography>
+                        <Typography variant="body1" style={{color:"#fff",maxWidth:"20rem"}} paragraph>
+                            What once was confined to huge rooms and teams of engineers now resides in every single one of our hands. 
+                            Harnessing this unlimited potential by using it to solve problems and better lives is at the heart of everything we do.
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid item lg style={{alignSelf:"center"}}>
+                    <Box
+                        component="img"
+                        alt="falling dominoes" 
+                        src={iterate}
                     />
                 </Grid>
             </Grid>
