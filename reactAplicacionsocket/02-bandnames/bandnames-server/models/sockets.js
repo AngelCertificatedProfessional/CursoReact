@@ -19,6 +19,11 @@ class Sockets {
             console.log('Cliente conectado');
             //Emitir al cliente conectado, todas las bandas actuales
             socket.emit('current-bands',this.bandList.getBands())
+            //Votar por la banda
+            socket.on('votar-banda',(id) => {
+                this.bandList.increaseVotes(id)
+                this.io.emit('current-bands',this.bandList.getBands())
+            })
         });
     }
 

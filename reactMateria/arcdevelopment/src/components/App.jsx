@@ -11,6 +11,7 @@ import { MobileApps } from "./MobileApps"
 import { Websites } from "./Websites"
 import { Revolution } from "./Revolution"
 import { About } from "./About"
+import { Contact } from "./Contact"
 
 export const App = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -30,7 +31,7 @@ export const App = () => {
           <Route path="/websites" element={<Websites setValue={setValue} setSelectedIndex={setSelectedIndex} />} />
           <Route path="/revolution" element={<Revolution setValue={setValue} setSelectedIndex={setSelectedIndex} />} />
           <Route path="/about" element={<About setValue={setValue} setSelectedIndex={setSelectedIndex} />} />
-          <Route path="/contact" Component={() => <div>Contact</div>} />
+          <Route path="/contact" element={<Contact setValue={setValue} setSelectedIndex={setSelectedIndex} />} />
           <Route path="/estimate" Component={() => <div>Estimate</div>} />
         </Routes>
         <Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />

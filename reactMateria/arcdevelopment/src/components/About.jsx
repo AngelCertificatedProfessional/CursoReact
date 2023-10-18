@@ -1,5 +1,5 @@
 import { useTheme } from '@mui/material/styles';
-import { Avatar,Box, Grid, Button, Typography, useMediaQuery, Card, CardContent } from '@mui/material'
+import { Avatar,Box, Grid, Typography, useMediaQuery } from '@mui/material'
 import history from '../assets/history.svg'
 import yearbook from '../assets/yearbook.svg'
 import puppy from '../assets/puppy.svg'
