@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const BandList = ({data,votar,borrar}) => {
+export const BandList = ({data,votar,borrar,cambiarNombre}) => {
     
     const [bands, setBands] = useState(data);
 
@@ -21,6 +21,7 @@ export const BandList = ({data,votar,borrar}) => {
 
     const onPerdioFoco = (id,nombre) => {
         console.log(id,nombre)
+        cambiarNombre(id,nombre)
     }
 
     const crearRows = () => {

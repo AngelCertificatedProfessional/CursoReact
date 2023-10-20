@@ -110,6 +110,10 @@ export const theme = createTheme({
         },
         MuiInput: {
             styleOverrides: {
+                root:{
+                    color:arcGrey,
+                    fontWeight:300
+                },
                 underline: {
                     "&:before": {
                         borderBottom: `2px solid ${arcBlue}`

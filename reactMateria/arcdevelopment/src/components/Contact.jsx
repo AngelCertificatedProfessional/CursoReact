@@ -7,10 +7,12 @@ import background from '../assets/background.jpg'
 import phoneIcon from '../assets/phone.svg'
 import airplane from '../assets/send.svg'
 import emailIcon from '../assets/email.svg'
+import mobileBackground from '../assets/mobileBackground.jpg'
 
 export const Contact = (props) => {
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"))
+    const matchesMD = useMediaQuery(theme.breakpoints.down("md"))
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
@@ -21,7 +23,7 @@ export const Contact = (props) => {
             fontSize: "0.7rem",
             height: 30,
             padding: 3,
-            [theme.breakpoints.down("sm")]: {
+            [theme.breakpoints.down("md")]: {
                 marginBottom: "2rem"
             }
         },
@@ -31,7 +33,10 @@ export const Contact = (props) => {
             backgroundSize: "cover",
             bacgroundRepeat: "no-repeat",
             height: "60rem",
-            paddingBottom: "10rem"
+            paddingBottom: "10rem",
+            [theme.breakpoints.down("md")]: {
+                backgroundImage: `url(${mobileBackground})`
+            }
         },
         estimateButton: {
             ...theme.typography.estimate,
@@ -45,7 +50,7 @@ export const Contact = (props) => {
             "&:hover": {
                 backgroundColor: theme.palette.secondary.light
             },
-            [theme.breakpoints.down("sm")]: {
+            [theme.breakpoints.down("md")]: {
                 marginRight: 0,
                 marginLeft: 0,
             }
@@ -69,14 +74,18 @@ export const Contact = (props) => {
     }
     return (
         <Grid container direction="row">
-            <Grid item container direction="column" justifyContent="center" alignItems="center" lg={4} xl={3}>
+            <Grid item container direction="column" 
+                style={{marginBottom: matchesMD ? "5rem" : 0,marginTop: matchesSM ? "1rem" : matchesMD ? "5rem" : 0}}
+                justifyContent="center" alignItems="center" lg={4} xl={3}>
                 <Grid item>
                     <Grid container direction="column">
                         <Grid item>
-                            <Typography variant='h2' style={{ lineHeight: 1 }}>
+                            <Typography align={matchesMD ? "center" : undefined} 
+                                variant='h2' style={{ lineHeight: 1 }}>
                                 Contact us
                             </Typography>
-                            <Typography variant='body1' style={{ color: theme.palette.common.blue }}>
+                            <Typography align={matchesMD ? "center" : undefined} 
+                                variant='body1' style={{ color: theme.palette.common.blue }}>
                                 We're waiting
                             </Typography>
                         </Grid>
@@ -112,19 +121,19 @@ export const Contact = (props) => {
                                 </Typography>
                             </Grid>
                         </Grid>
-                        <Grid item container style={{ maxWidth: "20rem" }}>
-                            <Grid item>
-                                <TextField label="Name" id="name" value={name} variant="standard" onChange={(event) => setName(event.target.value)} />
+                        <Grid item container direction="column" style={{ maxWidth: "20rem" }}>
+                            <Grid item style={{marginBottom:"0.5rem"}}>
+                                <TextField fullWidth label="Name" id="name" value={name} variant="standard" onChange={(event) => setName(event.target.value)} />
                             </Grid>
-                            <Grid item>
-                                <TextField label="Email" id="email" value={email} variant="standard" onChange={(event) => setEmail(event.target.value)} />
+                            <Grid item style={{marginBottom:"0.5rem"}}>
+                                <TextField fullWidth label="Email" id="email" value={email} variant="standard" onChange={(event) => setEmail(event.target.value)} />
                             </Grid>
-                            <Grid item>
-                                <TextField label="Phone" id="phone" value={phone} variant="standard" onChange={(event) => setPhone(event.target.value)} />
+                            <Grid item style={{marginBottom:"0.5rem"}}>
+                                <TextField fullWidth label="Phone" id="phone" value={phone} variant="standard" onChange={(event) => setPhone(event.target.value)} />
                             </Grid>
                         </Grid>
                         <Grid item style={{ maxWidth: "20rem" }}>
-                            <TextField rows={10} value={message} id="message" multiline variant="standard" InputProps={{ disableUnderline: true }}
+                            <TextField fullWidth rows={10} value={message} id="message" multiline variant="standard" InputProps={{ disableUnderline: true }}
                                 sx={useStyles.message}
                                 onChange={event => setMessage(event.target.value)} />
                         </Grid>
@@ -142,14 +151,14 @@ export const Contact = (props) => {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item container sx={useStyles.background} alignItems="center" lg={8} xl={9}>
-                <Grid item style={{ marginLeft: matchesSM ? 0 : "3rem", textAlign: matchesSM ? "center" : "inherit" }} >
+            <Grid item container sx={useStyles.background} alignItems="center" justify={matchesMD ? "center" : undefined} direction={matchesMD ? "column" : "row"} lg={8} xl={9}>
+                <Grid item style={{ marginLeft: matchesMD ? 0 : "3rem", textAlign: matchesMD ? "center" : "inherit" }} >
                     <Grid container direction="column">
                         <Grid item>
-                            <Typography variant="h2">
+                            <Typography align={matchesMD ? "center" : undefined} variant="h2">
                                 Simple Software <br /> Revolutionary
                             </Typography>
-                            <Typography variant="subtitle2" style={{ fontSize: "1.5rem" }}>
+                            <Typography align={matchesMD ? "center" : undefined} variant="subtitle2" style={{ fontSize: "1.5rem" }}>
                                 Take advantage of the 21st Century
                             </Typography>
                             <Grid container justifyContent={matchesSM ? "center" : undefined} item>
