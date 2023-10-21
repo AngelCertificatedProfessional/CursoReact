@@ -1,40 +1,13 @@
-import { useEffect } from "react"
+import { useEffect,useState } from "react"
 import { BandAdd } from "./components/BandAdd"
 import { BandList } from "./components/BandList"
-import { useState } from "react"
-import io from 'socket.io-client'
-
-const connectSocketServer = () => {
-  const socket = io.connect('http://localhost:8080',{
-    transports:['websocket']
-  })
-  return socket
-}
+import { useSocket } from "./hooks/useSocket"
 
 export const App = () => {
   
-  const [socket] = useState(connectSocketServer());
-  const [online,setOnline] = useState(false);
   const [bands,setBands] = useState([]) 
 
-  useEffect(() => {
-    console.log('entre connected')
-    setOnline(socket.connected)
-  },[socket])
-
-  useEffect(() => {
-    console.log('entre connect')
-    socket.on('connect', () => {
-      setOnline(true)
-    })
-  },[socket])
-
-  useEffect(() => {
-    console.log('entre disconnect')
-    socket.on('disconnect', () => {
-      setOnline(false)
-    })
-  },[socket])
+  const {socket,online} = useSocket('http://localhost:8080')
 
   useEffect(() => {
     console.log('entre current-bands')
@@ -54,11 +27,7 @@ export const App = () => {
   const cambiarNombre = (id,nombre) => {
     socket.emit('cambiar-nombre-banda',{id,nombre});
   }
-
-  const crearBanda = (nombre) => {
-    socket.emit('crear-banda',{nombre});
-  }
-
+  
   return (
     <div className="container">
       <div className="alert">
@@ -77,7 +46,7 @@ export const App = () => {
           <BandList data={bands} votar={votar} borrar={borrar} cambiarNombre={cambiarNombre}/>
         </div>
         <div className="col-4">
-          <BandAdd crearBanda={crearBanda}/>
+          <BandAdd/>
         </div>
       </div>
 

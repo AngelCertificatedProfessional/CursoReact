@@ -15,8 +15,36 @@ export const Contact = (props) => {
     const matchesMD = useMediaQuery(theme.breakpoints.down("md"))
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [emailHelper,setEmailHelper] = useState("")
     const [phone, setPhone] = useState('')
+    const [phoneHelper,setPhoneHelper] = useState("")
     const [message, setMessage] = useState('')
+    const onChange = event => {
+        let valid;
+        switch(event.target.id){
+            case "email":
+                setEmail(event.target.value);
+                valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value)
+                if(!valid){
+                    setEmailHelper("Invalid Email")
+                }else{
+                    setEmailHelper("")
+                }
+                break;
+            case "phone":
+                setPhone(event.target.value);
+                valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(event.target.value)
+                if(!valid){
+                    setPhoneHelper("Invalid Phone")
+                }else{
+                    setPhoneHelper("")
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     const useStyles = {
         learnButton: {
             ...theme.typography.learnButton,
@@ -123,13 +151,23 @@ export const Contact = (props) => {
                         </Grid>
                         <Grid item container direction="column" style={{ maxWidth: "20rem" }}>
                             <Grid item style={{marginBottom:"0.5rem"}}>
-                                <TextField fullWidth label="Name" id="name" value={name} variant="standard" onChange={(event) => setName(event.target.value)} />
+                                <TextField
+                                fullWidth label="Name" id="name" value={name} variant="standard" 
+                                onChange={(event) => setName(event.target.value)} />
                             </Grid>
                             <Grid item style={{marginBottom:"0.5rem"}}>
-                                <TextField fullWidth label="Email" id="email" value={email} variant="standard" onChange={(event) => setEmail(event.target.value)} />
+                                <TextField error={emailHelper.length !== 0} 
+                                helperText={emailHelper}
+                                fullWidth label="Email" id="email" 
+                                value={email} variant="standard" 
+                                onChange={onChange} />
                             </Grid>
                             <Grid item style={{marginBottom:"0.5rem"}}>
-                                <TextField fullWidth label="Phone" id="phone" value={phone} variant="standard" onChange={(event) => setPhone(event.target.value)} />
+                                <TextField error={phoneHelper.length !== 0} 
+                                helperText={phoneHelper}
+                                fullWidth label="Phone" id="phone" 
+                                value={phone} variant="standard" 
+                                onChange={onChange} />
                             </Grid>
                         </Grid>
                         <Grid item style={{ maxWidth: "20rem" }}>
