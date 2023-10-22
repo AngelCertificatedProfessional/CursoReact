@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TextField, Box, Grid, Button, Typography, useMediaQuery, Card, CardContent } from '@mui/material'
+import { TextField, Box, Grid, Button, Typography, useMediaQuery, Dialog,DialogContent } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
 import ButtonArrow from './ui/ButtonArrow';
 import background from '../assets/background.jpg'
@@ -19,6 +19,9 @@ export const Contact = (props) => {
     const [phone, setPhone] = useState('')
     const [phoneHelper,setPhoneHelper] = useState("")
     const [message, setMessage] = useState('')
+
+    const [open,setOpen] = useState(false)
+
     const onChange = event => {
         let valid;
         switch(event.target.id){
@@ -129,7 +132,7 @@ export const Contact = (props) => {
                             </Grid>
                             <Grid item>
                                 <Typography variant="body1" style={{ color: theme.palette.common.blue, fontSize: "1rem" }}>
-                                    (555) 555-5555
+                                    <a href="tel55555555555" style={{textDecoration:"none",color:"inherit"}}>(555) 555-5555 </a>
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -145,7 +148,7 @@ export const Contact = (props) => {
                             </Grid>
                             <Grid item>
                                 <Typography variant="body1" style={{ color: theme.palette.common.blue, fontSize: "1rem" }}>
-                                    ZACHARY@GMAIL.COM
+                                    <a href="" style={{textDecoration:"none",color:"inherit"}}>ZACHARY@GMAIL.COM</a>
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -171,12 +174,16 @@ export const Contact = (props) => {
                             </Grid>
                         </Grid>
                         <Grid item style={{ maxWidth: "20rem" }}>
-                            <TextField fullWidth rows={10} value={message} id="message" multiline variant="standard" InputProps={{ disableUnderline: true }}
+                            <TextField fullWidth rows={10} value={message}
+                                id="message" multiline variant="standard" 
+                                InputProps={{ disableUnderline: true }}
                                 sx={useStyles.message}
                                 onChange={event => setMessage(event.target.value)} />
                         </Grid>
                         <Grid item container justifyContent="center" style={{ marginTop: "2rem" }}>
-                            <Button variant="contained" sx={useStyles.sendButton}>Send Message
+                            <Button disabled={name.length === 0 || message.length === 0 ||
+                                phone.length === 0 || email.length === 0} variant="contained"
+                                sx={useStyles.sendButton} onClick={() => setOpen(true)}>Send Message
                                 <Box
                                     component="img"
                                     // sx={useStyles.icon}
@@ -189,6 +196,63 @@ export const Contact = (props) => {
                     </Grid>
                 </Grid>
             </Grid>
+            <Dialog open={open} onClose={() => setOpen(false)}>
+                <DialogContent>
+                    <Grid container direction="column">
+                        <Grid item>
+                            <Typography variant="h4" gutterBottom>
+                                Confirm Message
+                            </Typography>
+                        </Grid>
+                        <Grid item style={{marginBottom:"0.5rem"}}>
+                            <TextField
+                            fullWidth label="Name" id="name" value={name} variant="standard" 
+                            onChange={(event) => setName(event.target.value)} />
+                        </Grid>
+                        <Grid item style={{marginBottom:"0.5rem"}}>
+                            <TextField error={emailHelper.length !== 0} 
+                            helperText={emailHelper}
+                            fullWidth label="Email" id="email" 
+                            value={email} variant="standard" 
+                            onChange={onChange} />
+                        </Grid>
+                        <Grid item style={{marginBottom:"0.5rem"}}>
+                            <TextField error={phoneHelper.length !== 0} 
+                            helperText={phoneHelper}
+                            fullWidth label="Phone" id="phone" 
+                            value={phone} variant="standard" 
+                            onChange={onChange} />
+                        </Grid>
+                        <Grid item style={{ maxWidth: "20rem" }}>
+                            <TextField fullWidth rows={10} value={message}
+                                id="message" multiline variant="standard" 
+                                InputProps={{ disableUnderline: true }}
+                                sx={useStyles.message}
+                                onChange={event => setMessage(event.target.value)} />
+                        </Grid>
+                    </Grid>
+                    <Grid item container>
+                        <Grid item>
+                            <Button color="primary" onClick={() => setOpen(false)} >
+                                Cancel
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button disabled={name.length === 0 || message.length === 0 ||
+                                phone.length === 0 || email.length === 0} variant="contained"
+                                sx={useStyles.sendButton} onClick={() => setOpen(true)}>Send Message
+                                <Box
+                                    component="img"
+                                    // sx={useStyles.icon}
+                                    alt="paper airplane"
+                                    src={airplane}
+                                    style={{ marginLeft: "1rem" }}
+                                />
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </DialogContent>
+            </Dialog>
             <Grid item container sx={useStyles.background} alignItems="center" justify={matchesMD ? "center" : undefined} direction={matchesMD ? "column" : "row"} lg={8} xl={9}>
                 <Grid item style={{ marginLeft: matchesMD ? 0 : "3rem", textAlign: matchesMD ? "center" : "inherit" }} >
                     <Grid container direction="column">
