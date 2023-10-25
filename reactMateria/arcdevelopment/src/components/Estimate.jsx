@@ -312,6 +312,24 @@ export const Estimate = () => {
         setQuestions(newQuestions)
     }
 
+    const navigationPreviousDisabled = () => {
+      const currentlyActive = questions.filter(question => question.active)
+      if(currentlyActive[0].id === 1){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+    const navigationNextDisabled = () => {
+      const currentlyActive = questions.filter(question => question.active)
+      if(currentlyActive[0].id === questions[questions.length -1].id){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
     const useStyles = {
         icon:{
             width:"12rem",
@@ -400,21 +418,21 @@ export const Estimate = () => {
                 <Grid item container justifyContent="space-between" 
                     style={{width:"18rem",marginTop:"3rem"}}>
                     <Grid item>
-                        <IconButton onClick={previousQuestion}>
+                        <IconButton disabled={navigationPreviousDisabled()} onClick={previousQuestion}>
                             <Box
                                 component="img"
                                 alt="Previous question" 
-                                src={backArrow}
+                                src={navigationPreviousDisabled() ? backArrowDisabled :backArrow}
                             />
                         </IconButton>
                         
                     </Grid>
                     <Grid item>
-                        <IconButton onClick={nextQuestion}>
+                        <IconButton disabled={navigationNextDisabled()} onClick={nextQuestion}>
                             <Box
                                 component="img"
                                 alt="next question" 
-                                src={forwardArrow}
+                                src={navigationNextDisabled() ? forwardArrowDisabled :forwardArrow}
                             />
                         </IconButton>
                     </Grid>
