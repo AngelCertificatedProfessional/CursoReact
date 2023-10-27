@@ -294,6 +294,13 @@ export const Estimate = () => {
   const [message, setMessage] = useState('')
   const [total, setTotal] = useState(0)
 
+  const [service,setService] = useState([])
+  const [platforms,setPlatforms] = useState([])
+  const [features,setFeatures] = useState([])
+  const [customFeatures,setCustomFeatures] = useState("")
+  const [category,setCategory] = useState("")
+  const [users,setUsers] = useState("")
+
   const theme = useTheme();
 
   const onChange = event => {
@@ -388,12 +395,15 @@ export const Estimate = () => {
     switch (newSelected.title) {
       case "Custom software development":
         setQuestions(softwareQuestions)
+        setService(newSelected.title)
         break;
       case "iOs/Android app development":
         setQuestions(softwareQuestions)
+        setService(newSelected.title)
         break;
       case "Website development":
         setQuestions(websiteQuestions)
+        setService(newSelected.title)
         break;
       default:
         setQuestions(newQuestions)
@@ -448,6 +458,16 @@ export const Estimate = () => {
     cost -= userCost;
     cost *= userCost
     setTotal(cost);
+  }
+
+  const getPlatforms = () => {
+    let newPlatforms = []
+    if(questions.length > 2){
+      questions.filter(question => question.title === "Which platforms do you need supported?").
+        map(question => question.options
+          .filter(option => option.selected))[0].map(option => newPlatforms.push(option.title));
+          setPlatforms(newPlatforms)
+        }
   }
 
   return (
@@ -550,7 +570,7 @@ export const Estimate = () => {
         </Grid>
         <Grid item>
           <Button variant="contained" sx={useStyles.estimateButton}
-            onClick={() => { setDialogOpen(true); getTotal() }}>
+            onClick={() => { setDialogOpen(true); getTotal();getPlatforms();}}>
             Get Estimate
           </Button>
         </Grid>
@@ -565,27 +585,25 @@ export const Estimate = () => {
         </Grid>
         <DialogContent>
           <Grid container>
-            <Grid item container direction="column">
-              <Grid item container direction="column" style={{ maxWidth: "20rem" }}>
-                <Grid item style={{ marginBottom: "0.5rem" }}>
-                  <TextField
-                    fullWidth label="Name" id="name" value={name} variant="standard"
-                    onChange={(event) => setName(event.target.value)} />
-                </Grid>
-                <Grid item style={{ marginBottom: "0.5rem" }}>
-                  <TextField error={emailHelper.length !== 0}
-                    helperText={emailHelper}
-                    fullWidth label="Email" id="email"
-                    value={email} variant="standard"
-                    onChange={onChange} />
-                </Grid>
-                <Grid item style={{ marginBottom: "0.5rem" }}>
-                  <TextField error={phoneHelper.length !== 0}
-                    helperText={phoneHelper}
-                    fullWidth label="Phone" id="phone"
-                    value={phone} variant="standard"
-                    onChange={onChange} />
-                </Grid>
+            <Grid item container direction="column" md={7}>
+              <Grid item style={{ marginBottom: "0.5rem" }}>
+                <TextField
+                  fullWidth label="Name" id="name" value={name} variant="standard"
+                  onChange={(event) => setName(event.target.value)} />
+              </Grid>
+              <Grid item style={{ marginBottom: "0.5rem" }}>
+                <TextField error={emailHelper.length !== 0}
+                  helperText={emailHelper}
+                  fullWidth label="Email" id="email"
+                  value={email} variant="standard"
+                  onChange={onChange} />
+              </Grid>
+              <Grid item style={{ marginBottom: "0.5rem" }}>
+                <TextField error={phoneHelper.length !== 0}
+                  helperText={phoneHelper}
+                  fullWidth label="Phone" id="phone"
+                  value={phone} variant="standard"
+                  onChange={onChange} />
               </Grid>
               <Grid item style={{ maxWidth: "20rem" }}>
                 <TextField fullWidth rows={10} value={message}
@@ -608,6 +626,90 @@ export const Estimate = () => {
                   Fill out your name, phone, number and email, place your request, and we'll get back
                   yo you with details moving forward and a final price
                 </Typography>
+              </Grid>
+            </Grid>
+            <Grid item container direction="column" md={5}>
+              <Grid item>
+                <Grid container direction="column">
+                  <Grid item container alignItems="center">
+                    <Grid item>
+                      <Box
+                        component="img"
+                        alt="checkamrk"
+                        src={check}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="body1">
+                        You want {service} for 
+                        {platforms.length > 0 ? `for ${
+                              //if only web application is selected...
+                              platforms.indexOf("Web Application") > -1 &&
+                              platforms.length === 1
+                                ? //then finish sentence here
+                                  "a Web Application."
+                                : //otherwise, if web application and another platform is selected...
+                                platforms.indexOf("Web Application") > -1 &&
+                                  platforms.length === 2
+                                ? //then finish the sentence here
+                                  `a Web Application and an ${platforms[1]}.`
+                                : //otherwise, if only one platform is selected which isn't web application...
+                                platforms.length === 1
+                                ? //then finish the sentence here
+                                  `an ${platforms[0]}`
+                                : //otherwise, if other two options are selected...
+                                platforms.length === 2
+                                ? //then finish the sentence here
+                                  "an iOS Application and an Android Application."
+                                : //otherwise if all three are selected...
+                                platforms.length === 3
+                                ? //then finish the sentence here
+                                  "a Web Application, an iOS Application, and an Android Application."
+                                : null
+                            }`:null}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item container alignItems="center">
+                    <Grid item>
+                      <Box
+                        component="img"
+                        alt="checkamrk"
+                        src={check}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="body1">
+                        Second options check
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item container alignItems="center">
+                    <Grid item>
+                      <Box
+                        component="img"
+                        alt="checkamrk"
+                        src={check}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="body1">
+                        Third options check
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item>
+                <Button variant="contained" sx={useStyles.estimateButton}>
+                  Place Request 
+                  <Box
+                    component="img"
+                    alt="paper airplane"
+                    src={send}
+                    style={{marginLeft:"0.5rem"}}
+                  />
+                </Button>
               </Grid>
             </Grid>
           </Grid>
