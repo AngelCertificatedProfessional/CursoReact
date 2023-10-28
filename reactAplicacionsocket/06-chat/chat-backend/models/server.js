@@ -5,6 +5,7 @@ const socketio = require('socket.io');
 const path     = require('path');
 
 const Sockets  = require('./sockets');
+const { dbConnection } = require('../database/config');
 
 class Server {
 
@@ -12,6 +13,8 @@ class Server {
 
         this.app  = express();
         this.port = process.env.PORT;
+        //Conectar a DB
+        dbConnection()
 
         // Http server
         this.server = http.createServer( this.app );
@@ -23,6 +26,9 @@ class Server {
     middlewares() {
         // Desplegar el directorio público
         this.app.use( express.static( path.resolve( __dirname, '../public' ) ) );
+        
+        this.app.use('/api/login',require('../router/auth'))
+
     }
 
     // Esta configuración se puede tener aquí o como propieda de clase

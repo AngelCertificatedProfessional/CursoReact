@@ -193,7 +193,8 @@ export const Contact = (props) => {
                                 </Typography>
                             </Grid>
                         </Grid>
-                        <Grid item container direction="column" style={{ maxWidth: "20rem" }}>
+                        <Grid item container direction="column" 
+                            style={{ width: "20rem" }}>
                             <Grid item style={{marginBottom:"0.5rem"}}>
                                 <TextField
                                 fullWidth label="Name" id="name" value={name} variant="standard" 
@@ -214,11 +215,12 @@ export const Contact = (props) => {
                                 onChange={onChange} />
                             </Grid>
                         </Grid>
-                        <Grid item style={{ maxWidth: "20rem" }}>
+                        <Grid item style={{ width: "20rem" }}>
                             <TextField fullWidth rows={10} value={message}
                                 id="message" multiline variant="standard" 
                                 InputProps={{ disableUnderline: true }}
                                 sx={useStyles.message}
+                                placeholder='Tell us more about your project'
                                 onChange={event => setMessage(event.target.value)} />
                         </Grid>
                         <Grid item container justifyContent="center" style={{ marginTop: "2rem" }}>
@@ -233,14 +235,14 @@ export const Contact = (props) => {
                 </Grid>
             </Grid>
             <Dialog open={open} 
-                fullScreen={matchesXS}
+                fullScreen={matchesSM}
                 style={{zIndex:1302}}
                 onClose={() => setOpen(false)} PaperProps={{
                     style:{
                         paddingTop: matchesXS ? "1rem" : "5rem",
                         paddingBottom: matchesXS ? "1rem" : "5rem",
-                        paddingLeft: matchesXS ? 0 : matchesSM ? "5rem" : matchesMD ? " 10rem" : "20rem",
-                        paddingRight: matchesXS ? 0 : matchesSM ? "5rem" : matchesMD ? " 10rem" : "20rem",
+                        paddingLeft: matchesXS ? 0 : matchesSM ? "5rem" : matchesMD ? " 15rem" : "25rem",
+                        paddingRight: matchesXS ? 0 : matchesSM ? "5rem" : matchesMD ? " 15rem" : "25rem",
                     }
                 }}>
                 <DialogContent>
@@ -270,7 +272,7 @@ export const Contact = (props) => {
                             value={phone} variant="standard" 
                             onChange={onChange} />
                         </Grid>
-                        <Grid item style={{ maxWidth: matchesXS ? "100%" : "20rem"}}>
+                        <Grid item style={{ width: matchesXS ? "100%" : "20rem"}}>
                             <TextField fullWidth rows={10} value={message}
                                 id="message" multiline variant="standard" 
                                 InputProps={{ disableUnderline: true }}
