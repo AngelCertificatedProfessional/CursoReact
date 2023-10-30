@@ -8,9 +8,12 @@ const crearUsuario = async(req,res = response) => {
 }
 
 const login = async(req,res = response) => {
+    const {email,password} = req.body
     res.json({
         ok:true,
-        usuario:'ABC'
+        usuario:'ABC',
+        email,
+        password
     })
 }
 
