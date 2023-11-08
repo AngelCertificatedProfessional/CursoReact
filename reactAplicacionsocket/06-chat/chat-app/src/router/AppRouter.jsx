@@ -13,8 +13,8 @@ export const AppRouter = () => {
         <div>
             
             <Routes>
-                <Route path="auth" element={ AuthRouter } />
-                <Route exact path="/" element={ <ChatPage/> } />
+                <Route path="/auth/*" element={ <AuthRouter/> } />
+                <Route path="/" element={ <ChatPage/> } />
                 <Route path="/*" element={ <Navigate to="/"/>}/>
             </Routes>
         </div>
