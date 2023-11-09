@@ -1,13 +1,27 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../auth/AuthContext';
 
 export const LoginPage = () => {
 
+    const {login} = useContext(AuthContext)
+
     const [form,setForm] = useState({
-        email:'test1@gmail.com',
+        email:"testing@test.com",
         password:'123456',
         rememberme:true
     })
+
+    useEffect(() => {
+        const email = localStorage.getItem('email',form.email)
+        if(email){
+            setForm({
+                ...form,
+                email,
+                rememberme:true,
+            })
+        }
+    },[])
 
     const onChange = ({target}) => {
         const {name,value} = target;
@@ -26,6 +40,13 @@ export const LoginPage = () => {
 
     const onSubmit = (ev) => {
         ev.preventDefault();
+
+        (form.rememberme)
+        ?   localStorage.setItem('email',form.email)
+        :   localStorage.removeItem('email')
+
+        const {email,password} = form;
+        login(email,password)
     }
 
     return (
