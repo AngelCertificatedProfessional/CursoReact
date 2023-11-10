@@ -17,10 +17,42 @@ export const AuthProvider = ({children}) => {
 
     const login = async(email,password) => {
         const resp = await fetchSinToken('login',{email,password},'POST')
-        console.log(resp)
+        if(resp.ok) {
+            localStorage.setItem('token',resp.token);
+            const {usuario} = resp;
+
+            setAuth({
+                uid:usuario.uid,
+                checking:false,
+                logged: true,
+                name:usuario.nombre,
+                email:usuario.email
+            })
+            console.log('Autentificado!')
+        }
+        return resp.ok;
     } 
 
-    const register = (nombre,email,password) => {
+    const register = async(nombre,email,password) => {
+        console.log(nombre,email,password)
+
+        const resp = await fetchSinToken('login/new',{email,password,nombre},'POST')
+        
+        if(resp.ok) {
+            localStorage.setItem('token',resp.token);
+            const {usuario} = resp;
+
+            setAuth({
+                uid:usuario.uid,
+                checking:false,
+                logged: true,
+                name:usuario.name,
+                email:usuario.email
+            })
+            console.log('Autentificado!')
+            return true;
+        }
+        return resp.msg;
 
     }
 
@@ -34,6 +66,7 @@ export const AuthProvider = ({children}) => {
 
     return (
         <AuthContext.Provider value={{
+            auth,
             login,
             register,
             verificaToken,

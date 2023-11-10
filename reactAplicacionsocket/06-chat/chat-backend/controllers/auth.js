@@ -68,7 +68,7 @@ const login = async(req,res = response) => {
 
         res.json({
             ok:true,
-            usuariuo:usuarioDB,
+            usuario:usuarioDB,
             token
         })
     }catch(error){
