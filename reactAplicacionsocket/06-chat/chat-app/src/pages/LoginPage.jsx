@@ -48,7 +48,6 @@ export const LoginPage = () => {
 
         const {email,password} = form;
         const ok = await login(email,password)
-        console.log(ok)
         if(!ok ){
             Swal.fire('Error','Verifique el usuario y contraseña','error')
         }

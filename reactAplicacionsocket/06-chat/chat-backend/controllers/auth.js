@@ -83,7 +83,6 @@ const login = async(req,res = response) => {
 const renewToken = async(req,res = response) => {
 
     const uid = req.uid;
-
     //generar un nuevo JWT
     const token = await generarJWT(uid);
 
