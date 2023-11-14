@@ -13,7 +13,6 @@ export const AppRouter = () => {
 
   return (
     <Routes>
-
         {
           (status === 'authenticated')
           ? <Route path="/*" element={<JournalRoutes/>}/>

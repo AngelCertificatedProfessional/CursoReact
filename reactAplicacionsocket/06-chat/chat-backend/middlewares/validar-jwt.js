@@ -9,7 +9,7 @@ const validarJWT = (req,res,next) => {
                 msg:'No hay token en la peticion'
             })
         }
-
+        
         const {uid} = jwt.verify(token,process.env.JWT_KEY);
         req.uid = uid;
         next()
