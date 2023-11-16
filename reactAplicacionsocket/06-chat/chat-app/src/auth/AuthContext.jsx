@@ -28,13 +28,11 @@ export const AuthProvider = ({children}) => {
                 name:usuario.nombre,
                 email:usuario.email
             })
-            console.log('Autentificado!')
         }
         return resp.ok;
     } 
 
     const register = async(nombre,email,password) => {
-        console.log(nombre,email,password)
 
         const resp = await fetchSinToken('login/new',{email,password,nombre},'POST')
         
@@ -49,7 +47,6 @@ export const AuthProvider = ({children}) => {
                 name:usuario.name,
                 email:usuario.email
             })
-            console.log('Autentificado!')
             return true;
         }
         return resp.msg;
@@ -69,9 +66,7 @@ export const AuthProvider = ({children}) => {
             })
             return false;
         }
-        console.log('test')
         const resp = await fetchConToken('login/renew',{},'POST');
-        console.log(resp)
         if(resp.ok){
             localStorage.setItem('token',resp.token);
             const {usuario} = resp;
