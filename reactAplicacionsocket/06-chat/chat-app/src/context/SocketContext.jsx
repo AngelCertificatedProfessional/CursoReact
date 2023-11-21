@@ -2,14 +2,17 @@ import React, { useContext, useEffect } from 'react';
 import { createContext } from 'react';
 import {AuthContext} from '../auth/AuthContext'
 import { useSocket } from '../hooks/useSocket'
+import { ChatContext } from './chat/ChatContext';
+import {types} from '../types/types'
 
 export const SocketContext = createContext();
 
 
 export const SocketProvider = ({ children }) => {
 
-    const { socket, online,conectarSocket,desconectarSocket } = useSocket('http://localhost:8080');
+    const { socket, online,conectarSocket,desconectarSocket } = useSocket('http://localhost:8085');
     const {auth} = useContext(AuthContext)
+    const {dispatch} = useContext(ChatContext)
 
     useEffect(() => {
       if(auth.logged){
@@ -22,6 +25,16 @@ export const SocketProvider = ({ children }) => {
             desconectarSocket()
         }
       }, [auth,desconectarSocket])
+
+    //Eschucar los cambios en los usuarios conectados
+    useEffect(() => {
+      socket?.on('lista-usuarios',(usuarios) => {
+        dispatch({
+          type:types.usuariosCargados,
+          payload:usuarios
+        })
+      })
+    }, [socket,dispatch])
 
     return (
         <SocketContext.Provider value={{ socket, online }}>
