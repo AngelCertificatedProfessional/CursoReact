@@ -20,9 +20,8 @@ export const AuthProvider = ({children}) => {
         if(resp.ok) {
             localStorage.setItem('token',resp.token);
             const {usuario} = resp;
-
             setAuth({
-                uid:usuario.uid,
+                uid:usuario._id,
                 checking:false,
                 logged: true,
                 name:usuario.nombre,

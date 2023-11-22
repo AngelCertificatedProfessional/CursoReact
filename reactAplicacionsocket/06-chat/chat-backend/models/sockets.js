@@ -47,6 +47,8 @@ class Sockets {
             socket.on('disconnect', async() => {
                 console.log('Cliente desconectado',uid)
                 await usuarioDesconectado(uid)
+                //Cuando nos desconectamos haremos que refresque a todos los usuarios
+                this.io.emit('lista-usuarios',await getUsuarios())
             })
 
         });
