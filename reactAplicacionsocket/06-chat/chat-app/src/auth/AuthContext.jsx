@@ -40,7 +40,7 @@ export const AuthProvider = ({children}) => {
             const {usuario} = resp;
 
             setAuth({
-                uid:usuario.uid,
+                uid:usuario._id,
                 checking:false,
                 logged: true,
                 name:usuario.name,
@@ -71,7 +71,7 @@ export const AuthProvider = ({children}) => {
             const {usuario} = resp;
 
             setAuth({
-                uid:usuario.uid,
+                uid:usuario._id,
                 checking:false,
                 logged: true,
                 name:usuario.nombre,
