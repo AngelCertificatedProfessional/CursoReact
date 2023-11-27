@@ -16,7 +16,7 @@ const MensajeSchema = Schema({
         required:true
     }
 },{
-    tmestamps:true
+    timestamps:true
 })
 
 MensajeSchema.method('toJson',function() {
