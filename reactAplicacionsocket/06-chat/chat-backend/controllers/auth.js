@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const Usuario = require('../models/usuario');
 const { generarJWT } = require('../helpers/jwt');
 
-const crearUsuario = async(req,res = response) => {
+const crearUsuario = async(req,res = response) => { //(req, res = response, io)
 
     try{
         const {email,password} = req.body;
@@ -25,6 +25,11 @@ const crearUsuario = async(req,res = response) => {
         await usuario.save()
 
         const token = await generarJWT(usuario.id);
+
+        // if (/* alguna condición */) {
+        //     await this.sockets.metodoDeSockets(); // Reemplaza 'metodoDeSockets' por el método que quieras llamar
+        // }
+        //io.emit('evento', data); // Reemplaza 'evento' por el nombre del evento que quieres emitir y 'data' con la información que deseas enviar
         res.json({
             ok:true,
             usuario,
@@ -37,9 +42,14 @@ const crearUsuario = async(req,res = response) => {
             msg: 'hable con el administrador'
         })
     }
-
-
 }
+
+//para la funcionalidad del websocket
+// const withIO = (io) => {
+//     return async (req, res) => {
+//         await crearUsuario(req, res, io);
+//     };
+// };
 
 const login = async(req,res = response) => {
     const {email,password} = req.body

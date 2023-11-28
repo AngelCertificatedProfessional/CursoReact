@@ -38,7 +38,9 @@ class Server {
     // Esta configuración se puede tener aquí o como propieda de clase
     // depende mucho de lo que necesites
     configurarSockets() {
-        new Sockets( this.io );
+
+        //le agregamos esto para poder controlar el uso del socket
+        this.socket = new Sockets( this.io );
     }
 
     execute() {
