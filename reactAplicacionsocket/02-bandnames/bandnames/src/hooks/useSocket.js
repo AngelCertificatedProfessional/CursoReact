@@ -14,14 +14,14 @@ export const useSocket = (serverPath) => {
       },[socket])
     
     useEffect(() => {
-    console.log('entre connect')
+    console.log('cuando nos reconectamos')
     socket.on('connect', () => {
         setOnline(true)
     })
     },[socket])
 
     useEffect(() => {
-    console.log('entre disconnect')
+    console.log('cuando pierdo la conexion disconnect')
     socket.on('disconnect', () => {
         setOnline(false)
     })
