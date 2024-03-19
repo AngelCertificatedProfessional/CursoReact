@@ -20,8 +20,25 @@ export class Server {
 
         //* Middlewares
         this.app.use(express.static(this.publicPath))
-        //* Public Folder
 
+        //*Routes
+        this.app.get('/api/todos', (req, res) => {
+            res.json([{
+                id: 1,
+                text: 'Biy Milk',
+                createdAt: new Date()
+            }, {
+                id: 1,
+                text: 'Biy Milk',
+                createdAt: new Date()
+            }, {
+                id: 1,
+                text: 'Biy Milk',
+                createdAt: new Date()
+            }])
+        })
+
+        //* Public Folder
         this.app.listen(this.port, () => {
             console.log(`Server running on port ${this.port}`)
         })
