@@ -22,11 +22,15 @@ export class Server {
     async start() {
 
         //* Middlewares
+        this.app.use(express.json())
+        this.app.use(express.urlencoded({ extended: true }))//x-www-form-encoded
+
+        //* Public Folder
         this.app.use(express.static(this.publicPath))
 
         //*Routes
         this.app.use(this.routes)
-        //* Public Folder
+
         this.app.listen(this.port, () => {
             console.log(`Server running on port ${this.port}`)
         })
