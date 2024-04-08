@@ -7,7 +7,6 @@ export class ProductRoutes {
     static get routes(): Router {
         const router = Router();
         // const categoryService = new CategoryService()
-
         const productService = new ProductService()
         const controller = new ProductController(productService)
         // Definir las rutas
