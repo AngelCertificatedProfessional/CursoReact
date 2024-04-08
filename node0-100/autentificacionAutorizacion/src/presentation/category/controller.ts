@@ -1,7 +1,8 @@
 import { Request, Response } from "express"
-import { CreateCategoryDto, CustomError } from "../../domain"
-export class CategoryController {
+import { CustomError } from "../../domain"
+export class FileUploadController {
     constructor(
+        // private readonly categoryService: CategoryService
     ) { }
 
     private handleError = (error: unknown, res: Response) => {
@@ -11,13 +12,11 @@ export class CategoryController {
         return res.status(500).json({ error: 'Internal server error' })
     }
 
-    createCategory = async (req: Request, res: Response) => {
-        const [error, createCategoryDto] = CreateCategoryDto.create(req.body)
-        if (error) return res.status(400).json({ error })
-        res.json(createCategoryDto);
+    uploadFile = async (req: Request, res: Response) => {
+        res.json('UploadFile')
     }
 
-    getCategories = async (req: Request, res: Response) => {
-        res.json('Get category')
+    uploadMultipleFiles = async (req: Request, res: Response) => {
+        res.json('UploadFile')
     }
 }

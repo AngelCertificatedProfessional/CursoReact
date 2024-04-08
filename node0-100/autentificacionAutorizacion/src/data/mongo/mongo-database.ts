@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 interface Options {
     mongoUrl: string;
@@ -20,4 +20,9 @@ export class MongoDatabase {
         }
 
     }
+
+    static async disconnect() {
+        await mongoose.disconnect();
+    }
+
 }
