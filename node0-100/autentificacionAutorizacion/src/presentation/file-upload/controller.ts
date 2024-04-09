@@ -1,9 +1,10 @@
 import { Request, Response } from "express"
-import { CreateCategoryDto, CustomError, PaginationDto } from "../../domain"
-import { CategoryService } from "../services/category.services"
-export class CategoryController {
+import { CustomError } from "../../domain"
+import { FileUploadService } from "../services/file-upload.services"
+import { UploadedFile } from "express-fileupload"
+export class FileUploadController {
     constructor(
-        private readonly categoryService: CategoryService
+        private readonly fileUploadService: FileUploadService
     ) { }
 
     private handleError = (error: unknown, res: Response) => {
@@ -13,21 +14,25 @@ export class CategoryController {
         return res.status(500).json({ error: 'Internal server error' })
     }
 
-    createCategory = async (req: Request, res: Response) => {
-        const [error, createCategoryDto] = CreateCategoryDto.create(req.body)
-        if (error) return res.status(400).json({ error })
-        this.categoryService.createCategory(createCategoryDto!, req.body.user)
-            .then(category => res.status(201).json(category))
+    uploadFile = async (req: Request, res: Response) => {
+        const type = req.params.type;
+        const validTypes = ['users', 'products', 'categories']
+        if (!validTypes.includes(type)) {
+            return res.status(400).json({ error: `Invalid type ${type},valid ones ${validTypes}` })
+        }
+
+        if (!req.files || Object.keys(req.files).length === 0) {
+            return res.status(400).json({ error: 'No files were selected' })
+        }
+
+        const file = req.body.files.at(0) as UploadedFile
+
+        this.fileUploadService.uploadSingle(file, `uploads/${type}`)
+            .then(uploaded => res.json(uploaded))
             .catch(error => this.handleError(error, res))
     }
 
-    getCategories = async (req: Request, res: Response) => {
-
-        const { page = 1, limit = 10 } = req.query;
-        const [error, paginationDto] = PaginationDto.create(+page, +limit)
-        if (error) return res.status(400).json({ error })
-        this.categoryService.getCategories(paginationDto!)
-            .then(categories => res.json(categories))
-            .catch(error => this.handleError(error, res))
+    uploadMultipleFiles = async (req: Request, res: Response) => {
+        res.json('UploadFile')
     }
 }
