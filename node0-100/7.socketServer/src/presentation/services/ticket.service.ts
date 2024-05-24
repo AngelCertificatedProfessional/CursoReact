@@ -3,7 +3,7 @@ import { UuidAdapter } from "../../config/uuid.adapter";
 import { Ticket } from "../../domain/interfaces/ticket";
 
 export class TicketService {
-    private readonly tickets: Ticket[] = [
+    public readonly tickets: Ticket[] = [
         { id: UuidAdapter.v4(), number: 1, createAt: new Date(), done: false },
         { id: UuidAdapter.v4(), number: 2, createAt: new Date(), done: false },
         { id: UuidAdapter.v4(), number: 3, createAt: new Date(), done: false },
@@ -12,18 +12,24 @@ export class TicketService {
         { id: UuidAdapter.v4(), number: 6, createAt: new Date(), done: false }
     ]
 
+    private readonly workingOnTickets: Ticket[] = [];
+
     public get pendingTickets(): Ticket[] {
         return this.tickets.filter(ticket => !ticket.handleAtDesk)
     }
 
-    public lastTicketNumber(): number {
+    public get lastWorkingOnTickets(): Ticket[] {
+        return this.workingOnTickets.splice(0, 4);
+    }
+
+    public get lastTicketNumber(): number {
         return this.tickets.length > 0 ? this.tickets.at(-1)!.number : 0
     }
 
     public createTicket() {
         const ticket: Ticket = {
             id: UuidAdapter.v4(),
-            number: this.lastTicketNumber() + 1,
+            number: this.lastTicketNumber + 1,
             createAt: new Date(),
             done: false,
             handleAt: undefined,
@@ -38,6 +44,9 @@ export class TicketService {
         if (!ticket) return { status: 'error', message: 'No hay tickets pendientes' }
         ticket.handleAtDesk = desk;
         ticket.handleAt = new Date();
+
+        this.workingOnTickets.unshift({ ...ticket })
+
         //Todo: WS
         return { status: ok, ticket }
     }
