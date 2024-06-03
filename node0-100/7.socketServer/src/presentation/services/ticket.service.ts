@@ -11,12 +11,12 @@ export class TicketService {
     }
 
     public readonly tickets: Ticket[] = [
-        { id: UuidAdapter.v4(), number: 1, createAt: new Date(), done: false },
-        { id: UuidAdapter.v4(), number: 2, createAt: new Date(), done: false },
-        { id: UuidAdapter.v4(), number: 3, createAt: new Date(), done: false },
-        { id: UuidAdapter.v4(), number: 4, createAt: new Date(), done: false },
-        { id: UuidAdapter.v4(), number: 5, createAt: new Date(), done: false },
-        { id: UuidAdapter.v4(), number: 6, createAt: new Date(), done: false }
+        // { id: UuidAdapter.v4(), number: 1, createAt: new Date(), done: false },
+        // { id: UuidAdapter.v4(), number: 2, createAt: new Date(), done: false },
+        // { id: UuidAdapter.v4(), number: 3, createAt: new Date(), done: false },
+        // { id: UuidAdapter.v4(), number: 4, createAt: new Date(), done: false },
+        // { id: UuidAdapter.v4(), number: 5, createAt: new Date(), done: false },
+        // { id: UuidAdapter.v4(), number: 6, createAt: new Date(), done: false }
     ]
 
     private readonly workingOnTickets: Ticket[] = [];
@@ -54,7 +54,7 @@ export class TicketService {
         ticket.handleAt = new Date();
 
         this.workingOnTickets.unshift({ ...ticket })
-
+        this.onTicketNumberChanged();
         //Todo: WS
         return { status: ok, ticket }
     }
