@@ -45,6 +45,7 @@ export class TicketService {
         this.tickets.push(ticket)
         this.onTicketNumberChanged();
         return ticket;
+
     }
 
     public drawTicket(desk: string) {
