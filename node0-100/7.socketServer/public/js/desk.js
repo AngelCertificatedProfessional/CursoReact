@@ -33,6 +33,7 @@ async function loadInitialCount() {
 }
 
 async function getTicket() {
+    await finishTicket()
     const { status, ticket } = await fetch(`/api/ticket/draw${deskNumber}`).then(resp => resp.json());
     if (status === 'error') {
         lblCurrentTicket.innerText = message
@@ -40,6 +41,17 @@ async function getTicket() {
     }
     workingTicket = ticket;
     lblCurrentTicket.innerText = ticket.number;
+}
+
+async function finishTicket() {
+    if (!workingTicket) return;
+    const { status, message } = await fetch(`/api/ticket/done/${workingTicket.id}`, {
+        method: 'PUT'
+    }).then(resp => resp.json)
+    if (status === 'ok') {
+        workingTicket = NULL;
+        lblCurrentTicket.innerText = 'Nadie'
+    }
 }
 
 function connectToWebSockets() {
@@ -68,6 +80,7 @@ function connectToWebSockets() {
 }
 //Listeners
 btnDraw.addEventListener('click', getTicket)
+btnDone.addEventListener('click', finishTicket)
 
 loadInitialCount()
 connectToWebSockets()
