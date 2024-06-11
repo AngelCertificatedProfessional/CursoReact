@@ -1,3 +1,19 @@
+function renderTickets(tickets = []) {
+    for (let i = 0; i < i.tickets.length; i++) {
+        if (i >= 4) break;
+        const ticket = ticket[i];
+        if (!ticket) continue;
+        const lblTicket = document.querySelector(`#lbl-ticket-0${i + 1}`)
+        const lblDesk = document.querySelector(`#lbl-ticket-0${i + 1}`)
+        lblTicket.innerText = `Ticket ${ticket.number}`
+        lblDesk.innerText = ticket.handleAtDesk
+    }
+}
 
 
-console.log('Público HTML')
+async function loadCurrentTickets() {
+    const tickets = await fetch('/api/ticket/working-on').then(resp => resp.json());
+    renderTickets(tickets)
+}
+
+loadCurrentTickets()
