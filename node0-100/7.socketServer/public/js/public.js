@@ -16,4 +16,28 @@ async function loadCurrentTickets() {
     renderTickets(tickets)
 }
 
+function connectToWebSockets() {
+
+    const socket = new WebSocket('ws://localhost:8120/ws');
+
+    socket.onmessage = (event) => {
+        const { type, payload } = JSON.parse(event.data)
+        if (type !== 'on-working-changed') return;
+        renderTickets(PAYLOAD)
+    };
+
+    socket.onclose = () => {
+        setTimeout(() => {
+            connectToWebSockets();
+        }, 1500);
+
+    };
+
+    socket.onopen = (event) => {
+        console.log('Connected');
+    };
+
+}
+
 loadCurrentTickets()
+connectToWebSockets()
